@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alberto Vera · Revenue Architecture Portfolio</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:#fff;color:#1A1A1A;font-size:15px;line-height:1.7}
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap');
+
+/* HEADER */
+.hd{padding:3rem 3rem 2.5rem;border-bottom:2px solid #1A1A1A;max-width:960px;margin:0 auto}
+.hd-eye{font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:#888;margin-bottom:.75rem}
+.hd-name{font-family:Georgia,serif;font-size:38px;font-weight:400;color:#1A1A1A;line-height:1.1;margin-bottom:.5rem}
+.hd-role{font-size:16px;color:#4A5568;margin-bottom:1.5rem}
+.hd-meta{display:flex;gap:2rem;flex-wrap:wrap}
+.hd-meta-item{font-size:13px;color:#888}
+.hd-meta-item strong{color:#1A1A1A;font-weight:500}
+
+/* INTRO */
+.intro{max-width:960px;margin:0 auto;padding:2.5rem 3rem;border-bottom:1px solid #D1D5DB}
+.intro-text{font-size:16px;color:#4A5568;line-height:1.8;max-width:680px}
+.intro-text em{color:#1A1A1A;font-style:normal;font-weight:500}
+
+/* NUMBERS */
+.numbers{max-width:960px;margin:0 auto;padding:2rem 3rem;display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;border-bottom:1px solid #D1D5DB}
+.num-item{border:1px solid #D1D5DB;border-radius:2px;padding:1rem}
+.num-val{font-family:Georgia,serif;font-size:26px;color:#1A1A1A;margin-bottom:3px}
+.num-lbl{font-size:11px;color:#888;margin-bottom:2px}
+.num-sub{font-size:11px;color:#D1D5DB}
+
+/* PORTFOLIO */
+.portfolio{max-width:960px;margin:0 auto;padding:2.5rem 3rem 4rem}
+.section-lbl{font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#888;border-left:2px solid #1A1A1A;padding-left:.6rem;margin-bottom:1.5rem}
+.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin-bottom:2.5rem}
+.card{border:1px solid #D1D5DB;border-radius:2px;padding:1.5rem;text-decoration:none;color:inherit;display:block;transition:border-color .15s,background .15s;position:relative}
+.card:hover{border-color:#1A1A1A;background:#F8F8F6}
+.card-num{font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#888;margin-bottom:.5rem}
+.card-title{font-family:Georgia,serif;font-size:20px;color:#1A1A1A;margin-bottom:.4rem;font-weight:400}
+.card-sub{font-size:13px;color:#4A5568;margin-bottom:1rem;line-height:1.5}
+.card-tags{display:flex;flex-wrap:wrap;gap:.4rem}
+.tag{font-size:10px;font-weight:500;padding:2px 8px;border-radius:2px;background:#F8F8F6;color:#888;border:1px solid #D1D5DB}
+.card-arrow{position:absolute;top:1.5rem;right:1.5rem;font-size:16px;color:#D1D5DB;transition:color .15s}
+.card:hover .card-arrow{color:#1A1A1A}
+.card.featured{border-color:#1A1A1A;background:#F8F8F6}
+.card.featured .card-title{color:#1A1A1A}
+
+/* DIVIDER */
+.divider{border:none;border-top:1px solid #D1D5DB;margin:2rem 0}
+
+/* CONTACT */
+.contact{max-width:960px;margin:0 auto;padding:0 3rem 3rem}
+.contact-inner{border:2px solid #1A1A1A;border-radius:2px;padding:1.5rem 2rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.contact-left{}
+.contact-lbl{font-size:11px;color:#888;margin-bottom:.4rem}
+.contact-name{font-family:Georgia,serif;font-size:22px;color:#1A1A1A}
+.contact-role{font-size:13px;color:#4A5568;margin-top:.2rem}
+.contact-right{display:flex;gap:1rem;flex-wrap:wrap}
+.contact-btn{padding:8px 20px;border:1px solid #1A1A1A;border-radius:2px;font-size:13px;font-weight:500;color:#1A1A1A;text-decoration:none;transition:all .15s;font-family:'Inter',sans-serif}
+.contact-btn:hover{background:#1A1A1A;color:#fff}
+.contact-btn.primary{background:#1A1A1A;color:#fff}
+.contact-btn.primary:hover{background:#333}
+
+/* FOOTER */
+.ft{max-width:960px;margin:0 auto;padding:1.5rem 3rem;border-top:1px solid #D1D5DB;display:flex;justify-content:space-between;font-size:11px;color:#888}
+
+@media(max-width:680px){
+  .hd,.intro,.numbers,.portfolio,.contact{padding-left:1.5rem;padding-right:1.5rem}
+  .cards{grid-template-columns:1fr}
+  .numbers{grid-template-columns:repeat(2,1fr)}
+  .hd-name{font-size:28px}
+  .contact-inner{flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="hd">
+  <div class="hd-eye">Revenue Architecture · Portfolio</div>
+  <div class="hd-name">Alberto Vera</div>
+  <div class="hd-role">Senior Revenue Executive · B2B SaaS · Fleet Management</div>
+  <div class="hd-meta">
+    <div class="hd-meta-item"><strong>Mercado:</strong> España · Europa</div>
+    <div class="hd-meta-item"><strong>Sector:</strong> B2B SaaS · Telemática</div>
+    <div class="hd-meta-item"><strong>Período:</strong> 2016–2025</div>
+    <div class="hd-meta-item"><strong>Empresa:</strong> Movildata / Verizon Connect Iberia</div>
+  </div>
+</div>
+
+<!-- INTRO -->
+<div class="intro">
+  <div class="intro-text">
+    Llevo más de diez años construyendo máquinas de revenue en B2B SaaS — primero como
+    <em>CMO y Head of Strategy en Movildata</em>, donde diseñé el pricing, construí el motion
+    outbound desde cero e introduje ABM en la organización europea antes de liderar la due
+    diligence que respaldó la adquisición por Verizon. Después en
+    <em>Verizon Connect Iberia</em>, escalamos el negocio de
+    <em>3,1M€ a 17,3M€ de ARR en 7 años</em> — con autonomía real de startup dentro de
+    una corporate global. No era CRO de título — pero era la persona que decidía cómo se
+    generaba el revenue y cómo se optimizaba su coste.
+  </div>
+</div>
+
+<!-- NUMBERS -->
+<div class="numbers">
+  <div class="num-item">
+    <div class="num-lbl">LTV Total Generado</div>
+    <div class="num-val">69,5M€</div>
+    <div class="num-sub">2019–2025</div>
+  </div>
+  <div class="num-item">
+    <div class="num-lbl">Crecimiento ARR</div>
+    <div class="num-val">5,6x</div>
+    <div class="num-sub">3,1M€ → 17,3M€</div>
+  </div>
+  <div class="num-item">
+    <div class="num-lbl">ROI Global</div>
+    <div class="num-val">219%</div>
+    <div class="num-sub">LTV/CAC 3,3x</div>
+  </div>
+  <div class="num-item">
+    <div class="num-lbl">Deals Cerrados</div>
+    <div class="num-val">13.360</div>
+    <div class="num-sub">Inbound + Outbound</div>
+  </div>
+</div>
+
+<!-- PORTFOLIO -->
+<div class="portfolio">
+  <div class="section-lbl">Artefactos de Revenue Architecture</div>
+
+  <div class="cards">
+
+    <a class="card featured" href="okr1_bowtie_revenue_model.html">
+      <div class="card-arrow">→</div>
+      <div class="card-num">OKR 1</div>
+      <div class="card-title">Bowtie Revenue Model</div>
+      <div class="card-sub">Funnel completo con 3 capas de LTV, unit economics por segmento y decisiones de capital allocation con impacto en P&L.</div>
+      <div class="card-tags">
+        <span class="tag">69,5M€ LTV</span>
+        <span class="tag">13.360 deals</span>
+        <span class="tag">4 segmentos</span>
+        <span class="tag">3 escenarios</span>
+      </div>
+    </a>
+
+    <a class="card" href="okr2_icp_scoring_framework.html">
+      <div class="card-arrow">→</div>
+      <div class="card-num">OKR 2</div>
+      <div class="card-title">ICP Scoring Framework</div>
+      <div class="card-sub">Matriz de cualificación con criterios ponderados, calculadora interactiva de Tier A/B/C y tres ejemplos de cuentas reales anonimizadas.</div>
+      <div class="card-tags">
+        <span class="tag">4 criterios</span>
+        <span class="tag">100 pts máx</span>
+        <span class="tag">Calculadora live</span>
+        <span class="tag">3 ejemplos</span>
+      </div>
+    </a>
+
+    <a class="card" href="okr3_gtm_motion_canvas.html">
+      <div class="card-arrow">→</div>
+      <div class="card-num">OKR 3</div>
+      <div class="card-title">GTM Motion Canvas</div>
+      <div class="card-sub">Arquitectura completa de go-to-market: TAM/SAM/SOM, competitive landscape, pricing, PLG motion, channel mix y revenue forecast por canal.</div>
+      <div class="card-tags">
+        <span class="tag">TAM €4.2B</span>
+        <span class="tag">6 canales</span>
+        <span class="tag">PLG motion</span>
+        <span class="tag">3 escenarios</span>
+      </div>
+    </a>
+
+    <a class="card" href="okr4_expansion_playbook.html">
+      <div class="card-arrow">→</div>
+      <div class="card-num">OKR 4</div>
+      <div class="card-title">Expansion Playbook</div>
+      <div class="card-sub">Fleet gap scoring, cadencia de expansión por fase, 3 vectores de crecimiento y ROI de la unidad CS+Onboarding: 9,7x sobre 1,685M€ invertidos.</div>
+      <div class="card-tags">
+        <span class="tag">16,4M€ expansion</span>
+        <span class="tag">ROI 9,7x</span>
+        <span class="tag">Día 120 handoff</span>
+        <span class="tag">3 vectores</span>
+      </div>
+    </a>
+
+    <a class="card featured" href="case_study_movildata.html">
+      <div class="card-arrow">→</div>
+      <div class="card-num">Case Study</div>
+      <div class="card-title">Movildata Internacional</div>
+      <div class="card-sub">Cómo construí la infraestructura de revenue que transformó una PME de telemática en un activo adquirible por una multinacional global. Incluye Brandbook corporativo.</div>
+      <div class="card-tags">
+        <span class="tag">Revenue Architecture</span>
+        <span class="tag">M&A Due Diligence</span>
+        <span class="tag">ARR 3,1M€</span>
+        <span class="tag">Adquisición Verizon</span>
+      </div>
+    </a>
+
+    <a class="card" href="okr7_revenue_pl_model.html">
+      <div class="card-arrow">→</div>
+      <div class="card-num">OKR 7</div>
+      <div class="card-title">Revenue P&L Model</div>
+      <div class="card-sub">Modelo interactivo de revenue con inputs editables en tiempo real — ARPU, churn, budgets, headcount y closing ratios. Tres escenarios: conservador, base y agresivo.</div>
+      <div class="card-tags">
+        <span class="tag">Inputs live</span>
+        <span class="tag">3 escenarios</span>
+        <span class="tag">P&L 36M</span>
+        <span class="tag">Unit economics</span>
+      </div>
+    </a>
+
+  </div>
+
+  <hr class="divider">
+
+  <!-- CONTACT -->
+  <div style="padding:0">
+    <div class="section-lbl">Contacto</div>
+  </div>
+</div>
+
+<div class="contact">
+  <div class="contact-inner">
+    <div class="contact-left">
+      <div class="contact-lbl">¿Hablamos de revenue?</div>
+      <div class="contact-name">Alberto Vera</div>
+      <div class="contact-role">Senior Revenue Executive · Disponible para roles CRO / Head of Revenue</div>
+    </div>
+    <div class="contact-right">
+      <a class="contact-btn" href="https://www.linkedin.com/in/alberto-verarodriguez/" target="_blank">LinkedIn</a>
+      <a class="contact-btn primary" href="mailto:albertovera.k@gmail.com">Contactar</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="ft">
+  <span>Alberto Vera · Revenue Architecture Portfolio · 2025</span>
+  <span>Verizon Connect Iberia · Movildata Internacional</span>
+</div>
+
+</body>
+</html>

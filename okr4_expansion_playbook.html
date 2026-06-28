@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Account Management & Expansion Playbook · Verizon Connect Iberia</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:#fff;color:#1A1A1A;font-size:15px;line-height:1.7}
+.hd{padding:2.5rem 3rem 1.75rem;border-bottom:2px solid #1A1A1A}
+.hd-inner{max-width:900px;margin:0 auto;display:flex;justify-content:space-between;align-items:flex-end}
+.hd-eye{font-size:12px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#888;margin-bottom:.6rem}
+.hd-title{font-family:Georgia,serif;font-size:34px;font-weight:400;color:#1A1A1A;line-height:1.15}
+.hd-sub{font-size:14px;color:#666;margin-top:.4rem}
+.hd-meta{text-align:right;font-size:12px;color:#888;line-height:1.9}
+.hd-meta strong{display:block;font-size:14px;color:#1A1A1A;font-weight:500}
+.body{max-width:900px;margin:0 auto;padding:2.5rem 3rem 4rem}
+.sec{margin-bottom:2.5rem}
+.sec-lbl{font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#888;border-left:2px solid #1A1A1A;padding-left:.6rem;margin-bottom:1.25rem}
+.divider{border:none;border-top:1px solid #D1D5DB;margin:2rem 0}
+table{width:100%;border-collapse:collapse;margin-bottom:2rem}
+thead tr{border-bottom:2px solid #1A1A1A}
+th{text-align:left;font-size:11px;font-weight:500;color:#888;letter-spacing:.06em;text-transform:uppercase;padding:8px 10px}
+td{padding:10px 10px;border-bottom:1px solid #D1D5DB;color:#1A1A1A;font-size:13px}
+tbody tr:last-child td{border-bottom:none}
+tbody tr:hover td{background:#F8F8F6}
+.pill{display:inline-block;padding:3px 9px;border-radius:2px;font-size:11px;font-weight:500}
+.pb{background:#E6F1FB;color:#0C447C}
+.pg{background:#EAF3DE;color:#27500A}
+.pa{background:#FAEEDA;color:#633806}
+.pr{background:#FCEBEB;color:#791F1F}
+.pp{background:#EEEDFE;color:#3C3489}
+
+/* METRIC STRIP */
+.metric-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:.75rem;margin-bottom:2rem}
+.metric-card{background:#F8F8F6;border:1px solid #D1D5DB;border-radius:2px;padding:1rem}
+.m-label{font-size:12px;color:#888;margin-bottom:4px}
+.m-val{font-family:Georgia,serif;font-size:26px;color:#1A1A1A;line-height:1}
+.m-sub{font-size:11px;color:#888;margin-top:4px}
+
+/* PRIORITY ENGINE */
+.pe-box{background:#fff;border:1px solid #D1D5DB;border-radius:2px;padding:1.25rem;margin-bottom:2rem}
+.pe-title{font-size:14px;font-weight:500;color:#1A1A1A;margin-bottom:1rem}
+.pe-formula{display:grid;grid-template-columns:1fr 20px 1fr 20px 1fr;align-items:center;gap:.75rem;margin-bottom:1rem}
+.pe-cell{background:#F8F8F6;border:1px solid #D1D5DB;border-radius:2px;padding:.75rem;text-align:center}
+.pe-cell.hi{border-color:#1A1A1A;background:#F8F8F6}
+.pe-cell-lbl{font-size:10px;color:#888;margin-bottom:4px}
+.pe-cell-val{font-size:13px;font-weight:500;color:#1A1A1A}
+.pe-op{font-size:20px;color:#888;text-align:center;font-weight:300}
+.pe-note{font-size:12px;color:#4A5568;border-top:1px solid #D1D5DB;padding-top:.75rem;line-height:1.6}
+
+/* HANDOFF */
+.handoff-grid{display:grid;grid-template-columns:1fr 40px 1fr;gap:.75rem;align-items:center;margin-bottom:2rem}
+.handoff-card{border:1px solid #D1D5DB;border-radius:2px;padding:1.25rem}
+.handoff-card.hi{border-color:#1A1A1A;background:#F8F8F6}
+.hc-tag{display:inline-block;font-size:11px;font-weight:500;padding:3px 8px;border-radius:2px;margin-bottom:.75rem}
+.tag-com{background:#FAEEDA;color:#633806}
+.tag-cs{background:#EAF3DE;color:#27500A}
+.hc-range{font-family:Georgia,serif;font-size:24px;color:#1A1A1A;margin-bottom:4px}
+.hc-label{font-size:12px;color:#888;margin-bottom:.75rem}
+.hc-actions{list-style:none;font-size:13px;color:#4A5568;line-height:1.9}
+.hc-actions li::before{content:"—";margin-right:8px;color:#888}
+.handoff-arrow{text-align:center;font-size:22px;color:#888}
+
+/* CADENCE */
+.cadence{display:grid;grid-template-columns:repeat(4,1fr);gap:.75rem;margin-bottom:2rem}
+.phase{border:1px solid #D1D5DB;border-radius:2px;padding:1rem;cursor:pointer;transition:border-color .15s}
+.phase:hover{border-color:#1A1A1A}
+.phase.active{border-color:#1A1A1A;background:#F8F8F6}
+.phase-tag{display:inline-block;font-size:11px;font-weight:500;padding:2px 8px;border-radius:2px;margin-bottom:.75rem}
+.phase-day{font-family:Georgia,serif;font-size:22px;color:#1A1A1A;line-height:1;margin-bottom:4px}
+.phase-label{font-size:12px;color:#888;margin-bottom:.75rem}
+.phase-actions{list-style:none;font-size:12px;color:#4A5568;line-height:1.8}
+.phase-actions li::before{content:"—";margin-right:6px;color:#888}
+.phase-detail{display:none;font-size:12px;color:#4A5568;margin-top:.75rem;border-top:1px solid #D1D5DB;padding-top:.75rem;line-height:1.6}
+.phase.active .phase-detail{display:block}
+
+/* MODULES */
+.modules-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;margin-bottom:2rem}
+.module-card{border:1px solid #D1D5DB;border-radius:2px;padding:1rem}
+.mod-name{font-size:15px;font-weight:500;color:#1A1A1A;margin-bottom:4px}
+.mod-desc{font-size:12px;color:#4A5568;line-height:1.5;margin-bottom:.75rem}
+.mod-price{font-size:13px;font-weight:500;color:#1A1A1A;background:#F8F8F6;display:inline-block;padding:3px 8px;border-radius:2px;border:1px solid #D1D5DB}
+.mod-conv{font-size:11px;color:#888;margin-top:4px}
+
+/* VECTORS */
+.vector-item{display:grid;grid-template-columns:22px 1fr auto;gap:.75rem;padding:1rem 0;border-bottom:1px solid #D1D5DB;align-items:start}
+.vector-item:last-child{border-bottom:none}
+.v-num{font-family:Georgia,serif;font-size:18px;color:#888;padding-top:2px}
+.v-name{font-size:14px;font-weight:500;color:#1A1A1A;margin-bottom:3px}
+.v-desc{font-size:12px;color:#4A5568;line-height:1.6}
+
+/* ROI BOX */
+.roi-box{border:2px solid #1A1A1A;border-radius:2px;padding:1.5rem;display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.5rem;align-items:center}
+.roi-center{text-align:center;border-left:1px solid #D1D5DB;border-right:1px solid #D1D5DB;padding:0 1.5rem}
+.roi-side{text-align:center}
+.roi-label{font-size:11px;color:#888;margin-bottom:4px}
+.roi-val{font-family:Georgia,serif;font-size:34px;color:#1A1A1A}
+.roi-sub{font-size:11px;color:#888;margin-top:4px}
+.roi-note{font-size:11px;color:#4A5568;margin-top:.5rem;line-height:1.5}
+
+.ft{border-top:1px solid #D1D5DB;padding:1rem 3rem;display:flex;justify-content:space-between;font-size:12px;color:#888;max-width:900px;margin:0 auto}
+</style>
+</head>
+<body>
+
+<div class="hd">
+  <div class="hd-inner">
+    <div>
+      <div class="hd-eye">Account Management & Expansion Playbook</div>
+      <div class="hd-title">Expansión y retención de cuentas</div>
+      <div class="hd-sub">Verizon Connect Iberia · 2019–2025 · CS + Onboarding</div>
+    </div>
+    <div class="hd-meta">
+      <strong>Alberto Vera</strong>
+      Senior Revenue Executive<br>
+      B2B SaaS · Fleet Management
+    </div>
+  </div>
+</div>
+
+<div class="body">
+
+  <div class="sec">
+    <div class="sec-lbl">Métricas de la unidad de expansión</div>
+    <div class="metric-strip">
+      <div class="metric-card"><div class="m-label">Expansion LTV</div><div class="m-val">16,4M€</div><div class="m-sub">40% del ARR activo</div></div>
+      <div class="metric-card"><div class="m-label">ROI unidad expansión</div><div class="m-val">9,7x</div><div class="m-sub">CS + Onboarding · 1,685M€</div></div>
+      <div class="metric-card"><div class="m-label">Handoff a CS</div><div class="m-val">Día 120</div><div class="m-sub">Post-activación comercial</div></div>
+      <div class="metric-card"><div class="m-label">Conversión módulos</div><div class="m-val">~20%</div><div class="m-sub">Por oferta · +2€/vehículo</div></div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="sec">
+    <div class="sec-lbl">Motor de priorización · fleet gap scoring</div>
+    <div class="pe-box">
+      <div class="pe-title">Mecanismo de identificación de oportunidades de expansión</div>
+      <div class="pe-formula">
+        <div class="pe-cell">
+          <div class="pe-cell-lbl">Total fleet (capturado en cierre)</div>
+          <div class="pe-cell-val">Vehículos declarados por el cliente</div>
+        </div>
+        <div class="pe-op">−</div>
+        <div class="pe-cell">
+          <div class="pe-cell-lbl">Installed fleet (CRM post-activación)</div>
+          <div class="pe-cell-val">Vehículos contratados y activos</div>
+        </div>
+        <div class="pe-op">=</div>
+        <div class="pe-cell hi">
+          <div class="pe-cell-lbl">Fleet gap · oportunidad de expansión</div>
+          <div class="pe-cell-val">Lista ponderada por ICP score</div>
+        </div>
+      </div>
+      <div class="pe-note">En el cierre, el equipo comercial registraba el total de vehículos de la empresa — no solo los contratados. El CS recibía esta información en el handoff del día 120 y la contrastaba con la flota instalada activa en CRM. La diferencia generaba la lista de oportunidades de expansión, priorizada semanalmente por ICP scoring.</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="sec">
+    <div class="sec-lbl">Estructura de equipos · handoff en día 120</div>
+    <div class="handoff-grid">
+      <div class="handoff-card">
+        <div class="hc-tag tag-com">Equipo comercial + onboarding</div>
+        <div class="hc-range">Día 0 → 120</div>
+        <div class="hc-label">Activación, formación e instalación</div>
+        <ul class="hc-actions">
+          <li>Cierre y registro total fleet en CRM</li>
+          <li>Coordinación instalaciones (4 personas)</li>
+          <li>Formación de usuarios (1 formador)</li>
+          <li>KPI baseline establecido</li>
+          <li>Handoff documentado a CS</li>
+        </ul>
+      </div>
+      <div class="handoff-arrow">→</div>
+      <div class="handoff-card hi">
+        <div class="hc-tag tag-cs">Equipo CS</div>
+        <div class="hc-range">Día 120+</div>
+        <div class="hc-label">Expansión, retención y crecimiento</div>
+        <ul class="hc-actions">
+          <li>Fleet gap scoring en CRM</li>
+          <li>Primera oferta de expansión</li>
+          <li>Cross-sell módulos ECO/TACO/Temp</li>
+          <li>QBR trimestral Large y Enterprise</li>
+          <li>Referral activo en cuentas sanas</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="sec">
+    <div class="sec-lbl">Cadencia de expansión · haz clic en cada fase</div>
+    <div class="cadence">
+      <div class="phase" onclick="togglePhase(this)">
+        <div class="phase-tag tag-com">Comercial</div>
+        <div class="phase-day">Día 0–30</div>
+        <div class="phase-label">Instalación y activación</div>
+        <ul class="phase-actions"><li>Setup técnico</li><li>Formación usuarios</li><li>Registro total fleet</li></ul>
+        <div class="phase-detail">Objetivo: 100% de flota contratada instalada y operativa. El vendedor registra el total fleet declarado por el cliente en el CRM — dato clave para el fleet gap scoring que recibirá CS en el handoff.</div>
+      </div>
+      <div class="phase" onclick="togglePhase(this)">
+        <div class="phase-tag tag-com">Comercial</div>
+        <div class="phase-day">Día 60–90</div>
+        <div class="phase-label">Review de adopción</div>
+        <ul class="phase-actions"><li>ROI inicial revisado</li><li>Fricción detectada</li><li>Señales de churn</li></ul>
+        <div class="phase-detail">Llamada de valor — no de venta. Se presentan los primeros datos de eficiencia. Si hay fricción, se resuelve antes del handoff a CS. Objetivo: NPS positivo y cuenta lista para la fase de expansión.</div>
+      </div>
+      <div class="phase active" onclick="togglePhase(this)">
+        <div class="phase-tag tag-cs">CS</div>
+        <div class="phase-day">Día 120</div>
+        <div class="phase-label">Handoff + primera expansión</div>
+        <ul class="phase-actions"><li>Fleet gap presentado</li><li>Módulos ofertados</li><li>Upsell plan si aplica</li></ul>
+        <div class="phase-detail">Primer momento de expansión activa. CS recibe el handoff con el total fleet y calcula el gap. Se presenta al cliente como oportunidad de optimización. Los módulos ECO, TACO y Temperatura se ofrecen a +2€/vehículo con ~20% de conversión.</div>
+      </div>
+      <div class="phase" onclick="togglePhase(this)">
+        <div class="phase-tag tag-cs">CS</div>
+        <div class="phase-day">Día 180+</div>
+        <div class="phase-label">Cuenta estratégica</div>
+        <ul class="phase-actions"><li>QBR Large/Enterprise</li><li>Nuevas sedes</li><li>Referral solicitado</li></ul>
+        <div class="phase-detail">Large y Enterprise: QBR trimestral con análisis de ROI ampliado, propuesta de nuevas sedes y contrato plurianual. SMB: expansión a Large si supera 50 vehículos. En todas las cuentas sanas: solicitud activa de referral.</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="sec">
+    <div class="sec-lbl">Módulos de cross-sell</div>
+    <div class="modules-grid">
+      <div class="module-card">
+        <div class="mod-name">ECO</div>
+        <div class="mod-desc">Análisis de conducción eficiente. Consumo, emisiones y score de conductor.</div>
+        <div class="mod-price">+2€ / vehículo</div>
+        <div class="mod-conv">~20% conversión</div>
+      </div>
+      <div class="module-card">
+        <div class="mod-name">TACO</div>
+        <div class="mod-desc">Control de tacógrafo digital. Cumplimiento normativo y gestión de tiempos.</div>
+        <div class="mod-price">+2€ / vehículo</div>
+        <div class="mod-conv">~20% conversión</div>
+      </div>
+      <div class="module-card">
+        <div class="mod-name">Temperatura</div>
+        <div class="mod-desc">Monitorización de temperatura en tiempo real. Clave para transporte de frío.</div>
+        <div class="mod-price">+2€ / vehículo</div>
+        <div class="mod-conv">~20% conversión</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="sec">
+    <div class="sec-lbl">Vectores de expansión</div>
+    <div class="vector-item">
+      <div class="v-num">1</div>
+      <div>
+        <div class="v-name">Fleet gap — completar segmento contratado</div>
+        <div class="v-desc">Clientes SMB con gap entre total fleet declarado e installed fleet activo. Prioridad P1 por volumen. Ej.: cliente con capacidad 49 vehículos que solo activó 20 — oportunidad de +29 vehículos sin coste de adquisición.</div>
+      </div>
+      <span class="pill pg">CAC = 0€</span>
+    </div>
+    <div class="vector-item">
+      <div class="v-num">2</div>
+      <div>
+        <div class="v-name">Cross-sell de módulos ECO · TACO · Temperatura</div>
+        <div class="v-desc">Oferta progresiva desde día 120 con adopción base consolidada. +2€/vehículo por módulo. Conversión ~20% por oferta. Acumulable — un cliente puede contratar los tres módulos sobre toda su flota instalada.</div>
+      </div>
+      <span class="pill pb">~20% / módulo</span>
+    </div>
+    <div class="vector-item">
+      <div class="v-num">3</div>
+      <div>
+        <div class="v-name">Escalado de segmento y nuevas sedes</div>
+        <div class="v-desc">SMB que supera 50 vehículos escala a Large con repricing. Enterprise con flotas en varios proveedores: propuesta de consolidación. Cadenas de distribución/transporte: expansión por nuevas sedes. ABM one-to-one en Enterprise.</div>
+      </div>
+      <span class="pill pp">ABM one-to-one</span>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="sec">
+    <div class="sec-lbl">Priorización por segmento</div>
+    <table>
+      <thead>
+        <tr><th>Segmento</th><th>Vector principal</th><th>Churn</th><th>ARR</th><th>Prioridad CS</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>SMB 5–49</td><td>Fleet gap + módulos</td><td>5%</td><td>40%</td><td><span class="pill pg">P1 · volumen</span></td></tr>
+        <tr><td>Large 50–99</td><td>Módulos + sedes</td><td>3%</td><td>30%</td><td><span class="pill pb">P2 · valor</span></td></tr>
+        <tr><td>Enterprise +100</td><td>Consolidación + sedes</td><td>3%</td><td>13%</td><td><span class="pill pb">P2 · estratégico</span></td></tr>
+        <tr><td>Micro 1–4</td><td>Módulos vía email</td><td>7%</td><td>17%</td><td><span class="pill pa">Automatizado</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <hr class="divider">
+
+  <div class="sec">
+    <div class="sec-lbl">Resultado económico · unidad de expansión completa</div>
+    <div class="roi-box">
+      <div class="roi-side">
+        <div class="roi-label">Coste total · CS + Onboarding</div>
+        <div class="roi-val" style="font-size:26px">1,685M€</div>
+        <div class="roi-note">CS: 875K€ · 5 personas · 7 años<br>Onboarding: 810K€ · 3→5 personas · 7 años</div>
+      </div>
+      <div class="roi-center">
+        <div class="roi-label">ROI unidad expansión</div>
+        <div class="roi-val">9,7x</div>
+        <div class="roi-sub">16,4M€ LTV generado</div>
+      </div>
+      <div class="roi-side">
+        <div class="roi-label">Del LTV total generado</div>
+        <div class="roi-val" style="font-size:26px">23,6%</div>
+        <div class="roi-sub">69,5M€ LTV total · período completo</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="ft">
+  <span>Alberto Vera · Senior Revenue Executive</span>
+  <span>Verizon Connect Iberia · Expansion Playbook 2019–2025</span>
+</div>
+
+<script>
+function togglePhase(el){
+  document.querySelectorAll('.phase').forEach(p=>{if(p!==el)p.classList.remove('active');});
+  el.classList.toggle('active');
+}
+</script>
+</body>
+</html>

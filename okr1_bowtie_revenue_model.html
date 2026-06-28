@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bowtie Revenue Model · Verizon Connect Iberia 2019–2025</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IM+Fell+DW+Pica:ital@0;1&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:#fff;color:#1A1A1A;font-size:15px;line-height:1.7}
+.hd{padding:2.5rem 3rem 1.75rem;border-bottom:2px solid #1A1A1A}
+.hd-inner{max-width:900px;margin:0 auto;display:flex;justify-content:space-between;align-items:flex-end}
+.hd-eye{font-size:12px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#888;margin-bottom:.6rem}
+.hd-title{font-family:Georgia,serif;font-size:34px;font-weight:400;color:#1A1A1A;line-height:1.15}
+.hd-sub{font-size:14px;color:#666;margin-top:.4rem}
+.hd-meta{text-align:right;font-size:12px;color:#888;line-height:1.9}
+.hd-meta strong{display:block;font-size:14px;color:#1A1A1A;font-weight:500}
+.body{max-width:900px;margin:0 auto;padding:2.5rem 3rem 4rem}
+.sec{margin-bottom:2.5rem}
+.sec-lbl{font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#888;border-left:2px solid #1A1A1A;padding-left:.6rem;margin-bottom:1.25rem}
+.divider{border:none;border-top:1px solid #D1D5DB;margin:2rem 0}
+.bowtie{display:grid;grid-template-columns:1fr 68px 1fr;gap:1rem;align-items:center}
+.funnel{display:flex;flex-direction:column;gap:.5rem}
+.f-lbl{font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#888;margin-bottom:.3rem}
+.stage{border:1px solid #D1D5DB;background:#fff;padding:.65rem .9rem;border-radius:2px}
+.stage-l{font-size:11px;color:#888;margin-bottom:2px}
+.stage-v{font-family:Georgia,serif;font-size:18px;color:#1A1A1A}
+.stage-n{font-size:11px;color:#888;margin-top:2px}
+.stage.hi{border-color:#1A1A1A;background:#F8F8F6}
+.bt-center{display:flex;flex-direction:column;align-items:center;gap:6px}
+.bt-circle{width:52px;height:52px;border-radius:50%;border:2px solid #1A1A1A;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.bt-circle span{font-size:10px;font-weight:500;text-align:center;letter-spacing:.05em;text-transform:uppercase;color:#1A1A1A;line-height:1.4}
+.bt-note{font-size:11px;color:#888;text-align:center;line-height:1.4}
+.rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;margin-bottom:1rem}
+.rev-card{border:1px solid #D1D5DB;border-radius:2px;padding:1rem}
+.rev-card.hi{border-color:#1A1A1A;background:#F8F8F6}
+.rev-lbl{font-size:11px;font-weight:500;color:#888;margin-bottom:4px}
+.rev-val{font-family:Georgia,serif;font-size:22px;color:#1A1A1A}
+.rev-note{font-size:11px;color:#888;margin-top:4px}
+.total-box{border:2px solid #1A1A1A;border-radius:2px;padding:1.25rem 1.5rem;display:flex;justify-content:space-between;align-items:center;margin-bottom:2rem;gap:2rem}
+.total-lbl{font-size:12px;color:#888;margin-bottom:4px}
+.total-val{font-family:Georgia,serif;font-size:38px;color:#1A1A1A}
+.total-note{font-size:13px;color:#666;line-height:1.5}
+.kpi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;margin-bottom:2rem}
+.kpi{background:#F8F8F6;border:1px solid #D1D5DB;border-radius:2px;padding:1rem;text-align:center}
+.kpi-l{font-size:12px;color:#888;margin-bottom:6px}
+.kpi-v{font-family:Georgia,serif;font-size:28px;color:#1A1A1A}
+.kpi-n{font-size:11px;color:#888;margin-top:3px}
+.period-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:2rem}
+.period-card{border:1px solid #D1D5DB;border-radius:2px;padding:1.25rem}
+.period-title{font-size:14px;font-weight:500;color:#1A1A1A;border-bottom:1px solid #D1D5DB;padding-bottom:.5rem;margin-bottom:.75rem}
+.p-row{display:flex;justify-content:space-between;font-size:13px;padding:3px 0}
+.p-row span:first-child{color:#888}
+.p-row.total{font-weight:500;border-top:1px solid #1A1A1A;margin-top:6px;padding-top:8px}
+table{width:100%;border-collapse:collapse;font-size:12px;margin-bottom:2rem}
+thead tr{border-bottom:2px solid #1A1A1A}
+th{text-align:left;font-size:11px;font-weight:500;color:#888;letter-spacing:.06em;text-transform:uppercase;padding:8px 10px}
+td{padding:10px 10px;border-bottom:1px solid #D1D5DB;color:#1A1A1A;font-size:13px}
+tbody tr:last-child td{border-bottom:none}
+tbody tr:hover td{background:#F8F8F6}
+.pill{display:inline-block;padding:3px 9px;border-radius:2px;font-size:11px;font-weight:500}
+.pb{background:#E6F1FB;color:#0C447C}
+.pg{background:#EAF3DE;color:#27500A}
+.pa{background:#FAEEDA;color:#633806}
+.pr{background:#FCEBEB;color:#791F1F}
+.dec-item{display:grid;grid-template-columns:22px 1fr;gap:.75rem;padding:1rem 0;border-bottom:1px solid #D1D5DB;align-items:start}
+.dec-item:last-child{border-bottom:none}
+.dec-n{font-family:Georgia,serif;font-size:18px;color:#888;padding-top:1px}
+.dec-title{font-size:15px;font-weight:500;color:#1A1A1A;margin-bottom:3px}
+.dec-text{font-size:13px;color:#4A5568;line-height:1.6}
+.dec-impact{font-size:12px;color:#1A1A1A;margin-top:5px;font-weight:500;font-style:italic}
+.tab-row{display:flex;gap:4px;margin-bottom:1rem}
+.tab{padding:6px 16px;border:1px solid #D1D5DB;border-radius:2px;font-size:13px;cursor:pointer;background:#fff;color:#888;font-family:'Inter',sans-serif;transition:all .15s}
+.tab:hover{border-color:#1A1A1A;color:#1A1A1A}
+.tab.active{background:#1A1A1A;color:#fff;border-color:#1A1A1A}
+.scenario-box{background:#F8F8F6;border:1px solid #D1D5DB;border-radius:2px;padding:1.5rem}
+.s-title{font-size:13px;color:#4A5568;margin-bottom:1rem;font-style:italic}
+.s-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.s-lbl{font-size:11px;color:#888;margin-bottom:3px}
+.s-val{font-family:Georgia,serif;font-size:20px;color:#1A1A1A}
+.ft{border-top:1px solid #D1D5DB;padding:1rem 3rem;display:flex;justify-content:space-between;font-size:12px;color:#888;max-width:900px;margin:0 auto}
+</style>
+</head>
+<body>
+
+<div class="hd">
+  <div class="hd-inner">
+    <div>
+      <div class="hd-eye">Revenue Architecture · Bowtie Framework</div>
+      <div class="hd-title">Verizon Connect Iberia · 2019–2025</div>
+      <div class="hd-sub">Generación de demanda, new business y expansión · España y Portugal</div>
+    </div>
+    <div class="hd-meta">
+      <strong>Alberto Vera</strong>
+      Senior Revenue Executive<br>
+      B2B SaaS · Fleet Management
+    </div>
+  </div>
+</div>
+
+<div class="body">
+
+  <div class="sec">
+    <div class="sec-lbl">Funnel de adquisición y retención</div>
+    <div class="bowtie">
+      <div class="funnel">
+        <div class="f-lbl">Acquire</div>
+        <div class="stage hi"><div class="stage-l">Gross leads generados</div><div class="stage-v">103.333</div><div class="stage-n">CPL medio: 109€ · Presupuesto: 11,3M€</div></div>
+        <div class="stage"><div class="stage-l">Leads cualificados</div><div class="stage-v">71.333</div><div class="stage-n">Segmento Micro gestionado vía automatización</div></div>
+        <div class="stage"><div class="stage-l">Reuniones de venta</div><div class="stage-v">26.200</div><div class="stage-n">37% conversión · ABM para Large y Enterprise</div></div>
+        <div class="stage hi"><div class="stage-l">Contratos cerrados</div><div class="stage-v">17.368</div><div class="stage-n">Inbound + outbound · 51% ratio de cierre</div></div>
+      </div>
+      <div class="bt-center">
+        <div class="bt-circle"><span>Deal<br>cerrado</span></div>
+        <div class="bt-note">punto de<br>cierre</div>
+      </div>
+      <div class="funnel">
+        <div class="f-lbl">Retain &amp; Expand</div>
+        <div class="stage hi"><div class="stage-l">MRR generado</div><div class="stage-v">1.795.950€</div><div class="stage-n">ARPU medio: 11,87€ · 116.400 unidades activas</div></div>
+        <div class="stage"><div class="stage-l">Expansion revenue</div><div class="stage-v">40% del ARR base</div><div class="stage-n">Equipo CS de 5 personas · estable todo el período</div></div>
+        <div class="stage"><div class="stage-l">Churn medio</div><div class="stage-v">3–4%</div><div class="stage-n">Micro 7% · SMB 5% · Large y Enterprise 3%</div></div>
+        <div class="stage hi"><div class="stage-l">LTV total generado</div><div class="stage-v">69.544.875€</div><div class="stage-n">New business + expansion · 2019–2025</div></div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="sec">
+    <div class="sec-lbl">Composición del revenue · tres fuentes</div>
+    <div class="rev-grid">
+      <div class="rev-card"><div class="rev-lbl">New business inbound</div><div class="rev-val">40.908.750€</div><div class="rev-note">13.360 contratos · canal principal</div></div>
+      <div class="rev-card"><div class="rev-lbl">New business outbound</div><div class="rev-val">12.272.625€</div><div class="rev-note">4.008 contratos adicionales · 30% sobre inbound</div></div>
+      <div class="rev-card hi"><div class="rev-lbl">Expansion revenue</div><div class="rev-val">16.363.500€</div><div class="rev-note">40% sobre base de clientes activos · equipo CS</div></div>
+    </div>
+    <div class="total-box">
+      <div><div class="total-lbl">LTV total generado · 2019–2025</div><div class="total-val">69.544.875€</div></div>
+      <div class="total-note">Sobre una inversión total de 21.800.000€ incluyendo headcount comercial y onboarding</div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-lbl">Métricas del período</div>
+    <div class="kpi-grid">
+      <div class="kpi"><div class="kpi-l">LTV total</div><div class="kpi-v">69,5M€</div><div class="kpi-n">New business + expansion</div></div>
+      <div class="kpi"><div class="kpi-l">Inversión total</div><div class="kpi-v">21,80M€</div><div class="kpi-n">Marketing + headcount + onboarding</div></div>
+      <div class="kpi"><div class="kpi-l">ROI</div><div class="kpi-v">219%</div><div class="kpi-n">3,3x sobre inversión total</div></div>
+      <div class="kpi"><div class="kpi-l">LTV por contrato</div><div class="kpi-v">4.002€</div><div class="kpi-n">Media sobre 17.368 contratos</div></div>
+      <div class="kpi"><div class="kpi-l">CAC medio</div><div class="kpi-v">1.208€</div><div class="kpi-n">Marketing + coste comercial</div></div>
+      <div class="kpi"><div class="kpi-l">LTV/CAC</div><div class="kpi-v">3,3x</div><div class="kpi-n">Benchmark saludable: 3x</div></div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="sec">
+    <div class="sec-lbl">Evolución por período</div>
+    <div class="period-grid">
+      <div class="period-card">
+        <div class="period-title">Verizon Connect · 2019–2023</div>
+        <div class="p-row"><span>Contratos cerrados</span><span>10.500</span></div>
+        <div class="p-row"><span>LTV new business</span><span>25.357.500€</span></div>
+        <div class="p-row"><span>LTV outbound</span><span>7.607.250€</span></div>
+        <div class="p-row"><span>Expansion revenue</span><span>10.143.000€</span></div>
+        <div class="p-row"><span>Coste headcount</span><span>7.410.000€</span></div>
+        <div class="p-row"><span>Onboarding</span><span>810.000€</span></div>
+        <div class="p-row total"><span>LTV total período</span><span>43.107.750€</span></div>
+      </div>
+      <div class="period-card">
+        <div class="period-title">Regional España + Portugal · 2024–2025</div>
+        <div class="p-row"><span>Contratos cerrados</span><span>2.860</span></div>
+        <div class="p-row"><span>LTV new business</span><span>15.551.250€</span></div>
+        <div class="p-row"><span>LTV outbound</span><span>4.665.375€</span></div>
+        <div class="p-row"><span>Expansion revenue</span><span>6.220.500€</span></div>
+        <div class="p-row"><span>Coste headcount</span><span>2.280.000€</span></div>
+        <div class="p-row total"><span>LTV total período</span><span>26.437.125€</span></div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="sec">
+    <div class="sec-lbl">Unit economics por segmento</div>
+    <table>
+      <thead><tr><th>Segmento</th><th>ARPU</th><th>Vehículos</th><th>LTV por cuenta</th><th>CAC</th><th>LTV/CAC</th><th>Churn</th><th>GTM motion</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Micro 1–4</strong></td><td>15€</td><td>2,5</td><td>525€</td><td>400€</td><td><span class="pill pr">1,3x</span></td><td>7%</td><td><span class="pill pa">Automatizado</span></td></tr>
+        <tr><td><strong>SMB 5–49</strong></td><td>13€</td><td>14</td><td>3.640€</td><td>800€</td><td><span class="pill pb">4,6x</span></td><td>5%</td><td><span class="pill pb">Core · doble ciclo</span></td></tr>
+        <tr><td><strong>Large 50–99</strong></td><td>13€</td><td>60</td><td>25.740€</td><td>2.000€</td><td><span class="pill pg">12,9x</span></td><td>3%</td><td><span class="pill pg">ABM one-to-many</span></td></tr>
+        <tr><td><strong>Enterprise +100</strong></td><td>16€</td><td>150</td><td>79.200€</td><td>4.000€</td><td><span class="pill pg">19,8x</span></td><td>3%</td><td><span class="pill pg">ABM one-to-one</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <hr class="divider">
+
+  <div class="sec">
+    <div class="sec-lbl">Decisiones de capital allocation · impacto en P&amp;L</div>
+    <div class="dec-item"><div class="dec-n">1</div><div><div class="dec-title">Automatización del segmento Micro</div><div class="dec-text">El segmento 1–4 vehículos representaba el 55% de los leads con un LTV/CAC de 1,3x. Se diseñó un GTM motion 100% automatizado donde el equipo comercial solo intervenía en el envío del contrato, liberando capacidad para segmentos de mayor retorno.</div><div class="dec-impact">Ahorro de 190.000€/año en Opex · mejora del ratio de cierre global en 11 puntos porcentuales</div></div></div>
+    <div class="dec-item"><div class="dec-n">2</div><div><div class="dec-title">ABM diferenciado por segmento</div><div class="dec-text">Implementación de Account-Based Marketing one-to-many para Large y one-to-one para Enterprise, redirigiendo los recursos comerciales hacia los segmentos con mayor LTV/CAC: 12,9x y 19,8x respectivamente.</div><div class="dec-impact">Large y Enterprise representan el 43% del ARR total con churn del 3%</div></div></div>
+    <div class="dec-item"><div class="dec-n">3</div><div><div class="dec-title">Construcción del canal outbound</div><div class="dec-text">España operó con una estructura 70% inbound / 30% outbound frente al 80–90% inbound del resto de Europa. El canal outbound generó 12,3M€ de LTV adicional con un CAC significativamente inferior al inbound, posicionando España como el mercado más rentable de la región.</div><div class="dec-impact">12.272.625€ de LTV adicional · CAC outbound un 67% inferior al inbound</div></div></div>
+    <div class="dec-item"><div class="dec-n">4</div><div><div class="dec-title">Reestructuración del equipo comercial · 2024–2025</div><div class="dec-text">Eliminación del equipo outbound dedicado y reducción de 3 BDRs en el segmento Micro una vez automatizado el proceso. El equipo pasó de 39 a 30 personas manteniendo el volumen de revenue gracias a la automatización y el modelo ABM.</div><div class="dec-impact">Reducción de 342.000€/año en Opex · mejora estructural del LTV/CAC</div></div></div>
+    <div class="dec-item"><div class="dec-n">5</div><div><div class="dec-title">Expansion revenue como motor de crecimiento</div><div class="dec-text">El equipo de Customer Success de 5 personas, mantenido estable durante todo el período, generó 16,4M€ en expansion revenue — el 23,6% del LTV total. Con un coste de equipo de 875.000€ en 7 años, el ROI de esta unidad fue de 18,7x.</div><div class="dec-impact">16.363.500€ generados · ROI del equipo CS: 18,7x</div></div></div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="sec">
+    <div class="sec-lbl">Escenarios de aplicación</div>
+    <div class="tab-row">
+      <div class="tab active" onclick="setTab('base',this)">Base</div>
+      <div class="tab" onclick="setTab('cons',this)">Conservador</div>
+      <div class="tab" onclick="setTab('agr',this)">Agresivo</div>
+    </div>
+    <div class="scenario-box">
+      <div class="s-title" id="s-title">Equipo lean · foco SMB y Large · outbound desde mes 3</div>
+      <div class="s-grid" id="s-grid">
+        <div><div class="s-lbl">Presupuesto año 1</div><div class="s-val">1.500.000€</div></div>
+        <div><div class="s-lbl">CAC objetivo</div><div class="s-val">1.000€</div></div>
+        <div><div class="s-lbl">Contratos año 1</div><div class="s-val">1.200</div></div>
+        <div><div class="s-lbl">MRR año 1</div><div class="s-val">180.000€</div></div>
+        <div><div class="s-lbl">LTV/CAC objetivo</div><div class="s-val">3,5x</div></div>
+        <div><div class="s-lbl">LTV proyectado</div><div class="s-val">4.200.000€</div></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="ft">
+  <span>Alberto Vera · Senior Revenue Executive</span>
+  <span>Verizon Connect Iberia · 2019–2025</span>
+</div>
+
+<script>
+const sc={
+  base:{t:"Equipo lean · foco SMB y Large · outbound desde mes 3",d:[["Presupuesto año 1","1.500.000€"],["CAC objetivo","1.000€"],["Contratos año 1","1.200"],["MRR año 1","180.000€"],["LTV/CAC objetivo","3,5x"],["LTV proyectado","4.200.000€"]]},
+  cons:{t:"Rampa progresiva · mercado nuevo · equipo reducido",d:[["Presupuesto año 1","900.000€"],["CAC objetivo","1.200€"],["Contratos año 1","650"],["MRR año 1","95.000€"],["LTV/CAC objetivo","2,8x"],["LTV proyectado","2.200.000€"]]},
+  agr:{t:"Outbound acelerado · automatización Micro desde día 1",d:[["Presupuesto año 1","2.500.000€"],["CAC objetivo","750€"],["Contratos año 1","2.500"],["MRR año 1","370.000€"],["LTV/CAC objetivo","5x"],["LTV proyectado","9.000.000€"]]}
+};
+function setTab(k,el){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('s-title').textContent=sc[k].t;
+  document.getElementById('s-grid').innerHTML=sc[k].d.map(([l,v])=>`<div><div class="s-lbl">${l}</div><div class="s-val">${v}</div></div>`).join('');
+}
+</script>
+</body>
+</html>

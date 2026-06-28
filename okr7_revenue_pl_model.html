@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Revenue P&L Model · Verizon Connect Iberia</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1" crossorigin="anonymous"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:#F8F8F6;color:#1A1A1A;font-size:13px;line-height:1.6}
+
+/* HEADER */
+.hd{background:#1A1A1A;padding:1.5rem 2rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.hd-left{}
+.hd-eye{font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:.4rem}
+.hd-title{font-family:Georgia,serif;font-size:22px;font-weight:400;color:#fff}
+.hd-sub{font-size:11px;color:rgba(255,255,255,.5);margin-top:.25rem}
+.sc-btns{display:flex;gap:6px}
+.sc-btn{padding:6px 14px;border:1px solid rgba(255,255,255,.2);border-radius:2px;background:transparent;color:rgba(255,255,255,.5);font-size:12px;cursor:pointer;font-family:'Inter',sans-serif;transition:all .15s}
+.sc-btn:hover{border-color:rgba(255,255,255,.5);color:#fff}
+.sc-btn.active{background:#fff;color:#1A1A1A;border-color:#fff;font-weight:500}
+
+/* LAYOUT */
+.layout{display:grid;grid-template-columns:270px 1fr;min-height:calc(100vh - 68px)}
+
+/* SIDEBAR */
+.sidebar{background:#fff;border-right:1px solid #D1D5DB;padding:1.25rem;overflow-y:auto}
+.sb-sec{margin-bottom:1.25rem;padding-bottom:1rem;border-bottom:1px solid #D1D5DB}
+.sb-sec:last-child{border-bottom:none;margin-bottom:0}
+.sb-title{font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#888;margin-bottom:.75rem}
+.irow{margin-bottom:.6rem}
+.irow label{display:flex;justify-content:space-between;align-items:center;font-size:11px;color:#4A5568;margin-bottom:3px;font-weight:500}
+.irow label span{font-weight:600;background:#F8F8F6;color:#1A1A1A;padding:1px 7px;border-radius:2px;border:1px solid #D1D5DB;font-size:11px}
+.irow input[type=range]{width:100%;cursor:pointer;height:2px;accent-color:#1A1A1A}
+.reset-btn{width:100%;padding:8px;border-radius:2px;border:1px solid #D1D5DB;background:#F8F8F6;color:#4A5568;font-size:11px;font-weight:500;cursor:pointer;font-family:'Inter',sans-serif;margin-top:4px;transition:all .15s}
+.reset-btn:hover{background:#1A1A1A;color:#fff;border-color:#1A1A1A}
+
+/* CONTENT */
+.content{padding:1.25rem;overflow-y:auto}
+
+/* KPI STRIP */
+.kpi-strip{display:grid;grid-template-columns:repeat(6,1fr);gap:.6rem;margin-bottom:.75rem}
+.kpi{background:#fff;border:1px solid #D1D5DB;border-radius:2px;padding:.875rem 1rem;border-top:2px solid #D1D5DB}
+.kpi.g{border-top-color:#1A1A1A}
+.kpi.a{border-top-color:#888}
+.kpi-lbl{font-size:9px;font-weight:500;color:#888;letter-spacing:.08em;text-transform:uppercase;margin-bottom:3px}
+.kpi-val{font-family:Georgia,serif;font-size:20px;color:#1A1A1A;margin:3px 0}
+.kpi-sub{font-size:9px;color:#888}
+.kpi-d{font-size:9px;font-weight:500;margin-top:3px;color:#888}
+.kpi-d.up{color:#1A1A1A}
+.kpi-d.dn{color:#888}
+
+/* CHARTS */
+.charts-grid{display:grid;grid-template-columns:2fr 1fr;gap:.75rem;margin-bottom:.75rem}
+.chart-card{background:#fff;border:1px solid #D1D5DB;border-radius:2px;padding:1rem 1.25rem}
+.chart-card h3{font-size:11px;font-weight:500;color:#888;letter-spacing:.06em;text-transform:uppercase;margin-bottom:.75rem}
+.chart-card canvas{max-height:200px}
+
+/* P&L */
+.pl-card{background:#fff;border:1px solid #D1D5DB;border-radius:2px;overflow:hidden;margin-bottom:.75rem}
+.pl-head{padding:.875rem 1.25rem;border-bottom:1px solid #D1D5DB;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem}
+.pl-head h3{font-size:12px;font-weight:500;color:#1A1A1A}
+.tabs{display:flex;gap:0}
+.tab{padding:5px 12px;font-size:11px;color:#888;cursor:pointer;border-bottom:2px solid transparent;transition:all .15s;font-family:'Inter',sans-serif}
+.tab:hover{color:#1A1A1A}
+.tab.active{color:#1A1A1A;border-bottom-color:#1A1A1A;font-weight:500}
+.pl-table{width:100%;border-collapse:collapse;font-size:11px}
+.pl-table th{text-align:right;padding:7px 12px;font-size:9px;font-weight:500;color:#888;letter-spacing:.08em;text-transform:uppercase;border-bottom:1px solid #D1D5DB;background:#F8F8F6}
+.pl-table th:first-child{text-align:left}
+.pl-table td{text-align:right;padding:7px 12px;border-bottom:1px solid #F0F0F0}
+.pl-table td:first-child{text-align:left}
+tr.rs td{background:#F8F8F6;font-weight:500;font-size:9px;text-transform:uppercase;letter-spacing:.06em;color:#888;padding:5px 12px}
+tr.rsu td{font-weight:600;background:#1A1A1A;color:#fff;font-size:11px}
+tr.rtot td{font-weight:500;font-size:11px;background:#F8F8F6;color:#1A1A1A;border-top:1px solid #D1D5DB}
+tr.rmarg td{font-weight:500;background:#F0F4F0;color:#1A1A1A;border-top:1px solid #D1D5DB}
+tr.ropex td{font-weight:500;background:#FDF8F0;color:#1A1A1A}
+.pos{color:#1A1A1A!important;font-weight:600}
+.neg{color:#888!important}
+
+/* ACQ TABLE */
+.acq-card{background:#fff;border:1px solid #D1D5DB;border-radius:2px;overflow:hidden}
+.acq-card h3{font-size:11px;font-weight:500;color:#888;letter-spacing:.06em;text-transform:uppercase;padding:.875rem 1.25rem;border-bottom:1px solid #D1D5DB}
+.acq-table{width:100%;border-collapse:collapse;font-size:11px}
+.acq-table th{text-align:right;padding:6px 12px;font-size:9px;font-weight:500;color:#888;text-transform:uppercase;letter-spacing:.06em;background:#F8F8F6;border-bottom:1px solid #D1D5DB}
+.acq-table th:first-child{text-align:left}
+.acq-table td{text-align:right;padding:8px 12px;border-bottom:1px solid #F0F0F0}
+.acq-table td:first-child{text-align:left;font-weight:500}
+.acq-table tr:last-child td{border-bottom:none}
+.badge{display:inline-block;padding:2px 7px;border-radius:2px;font-size:9px;font-weight:500}
+.bb{background:#E6F1FB;color:#0C447C}
+.bg{background:#EAF3DE;color:#27500A}
+.ba{background:#FAEEDA;color:#633806}
+
+/* FOOTER */
+.ft{border-top:1px solid #D1D5DB;padding:.875rem 2rem;display:flex;justify-content:space-between;font-size:10px;color:#888}
+
+@media(max-width:1050px){.layout{grid-template-columns:1fr}.sidebar{border-right:none;border-bottom:1px solid #D1D5DB}.kpi-strip{grid-template-columns:repeat(3,1fr)}.charts-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="hd">
+  <div class="hd-left">
+    <div class="hd-eye">Revenue Architecture · P&L Model · Proyección 36 meses</div>
+    <div class="hd-title">Verizon Connect Iberia · Modelo de revenue</div>
+    <div class="hd-sub">Base: 3,1M€ ARR · 20K vehículos · Calibrado con datos reales 2018–2025</div>
+  </div>
+  <div class="sc-btns">
+    <button class="sc-btn" id="btn-cons" onclick="setScenario('cons')">Conservador</button>
+    <button class="sc-btn active" id="btn-base" onclick="setScenario('base')">Base ✓</button>
+    <button class="sc-btn" id="btn-agr" onclick="setScenario('agr')">Agresivo</button>
+  </div>
+</div>
+
+<div class="layout">
+  <div class="sidebar">
+
+    <div class="sb-sec">
+      <div class="sb-title">Unit Economics</div>
+      <div class="irow"><label>ARPU (€/mes)<span id="lbl-arpu">12.5€</span></label><input type="range" id="inp-arpu" min="8" max="20" step="0.5" value="12.5" oninput="onInp('arpu',this.value)"></div>
+      <div class="irow"><label>Churn anual (%)<span id="lbl-churn">4.0%</span></label><input type="range" id="inp-churn" min="1" max="12" step="0.5" value="4" oninput="onInp('churn',this.value)"></div>
+      <div class="irow"><label>Expansión CS (%/mes)<span id="lbl-exprate">1.2%</span></label><input type="range" id="inp-exprate" min="0.3" max="3" step="0.1" value="1.2" oninput="onInp('exprate',this.value)"></div>
+    </div>
+
+    <div class="sb-sec">
+      <div class="sb-title">Budget Marketing (K€/año)</div>
+      <div class="irow"><label>Año 1<span id="lbl-mk1">650K€</span></label><input type="range" id="inp-mk1" min="100" max="2000" step="50" value="650" oninput="onInp('mk1',this.value)"></div>
+      <div class="irow"><label>Año 2<span id="lbl-mk2">850K€</span></label><input type="range" id="inp-mk2" min="100" max="2500" step="50" value="850" oninput="onInp('mk2',this.value)"></div>
+      <div class="irow"><label>Año 3<span id="lbl-mk3">1050K€</span></label><input type="range" id="inp-mk3" min="100" max="3000" step="50" value="1050" oninput="onInp('mk3',this.value)"></div>
+    </div>
+
+    <div class="sb-sec">
+      <div class="sb-title">Conversión</div>
+      <div class="irow"><label>Closing inbound (%)<span id="lbl-crIn">51%</span></label><input type="range" id="inp-crIn" min="20" max="70" step="1" value="51" oninput="onInp('crIn',this.value)"></div>
+      <div class="irow"><label>Closing outbound (%)<span id="lbl-crOut">35%</span></label><input type="range" id="inp-crOut" min="10" max="55" step="1" value="35" oninput="onInp('crOut',this.value)"></div>
+      <div class="irow"><label>Crecim. inbound (%/mes)<span id="lbl-grIn">2.2%</span></label><input type="range" id="inp-grIn" min="0.5" max="6" step="0.1" value="2.2" oninput="onInp('grIn',this.value)"></div>
+      <div class="irow"><label>Crecim. outbound (%/mes)<span id="lbl-grOut">1.8%</span></label><input type="range" id="inp-grOut" min="0.5" max="5" step="0.1" value="1.8" oninput="onInp('grOut',this.value)"></div>
+    </div>
+
+    <div class="sb-sec">
+      <div class="sb-title">Headcount</div>
+      <div class="irow"><label>Personas ventas<span id="lbl-hcS">8</span></label><input type="range" id="inp-hcS" min="2" max="20" step="1" value="8" oninput="onInp('hcS',this.value)"></div>
+      <div class="irow"><label>Coste ventas (K€/año)<span id="lbl-cS">40K€</span></label><input type="range" id="inp-cS" min="20" max="80" step="2" value="40" oninput="onInp('cS',this.value)"></div>
+      <div class="irow"><label>Personas CS<span id="lbl-hcC">5</span></label><input type="range" id="inp-hcC" min="1" max="15" step="1" value="5" oninput="onInp('hcC',this.value)"></div>
+      <div class="irow"><label>Coste CS (K€/año)<span id="lbl-cC">35K€</span></label><input type="range" id="inp-cC" min="20" max="70" step="2" value="35" oninput="onInp('cC',this.value)"></div>
+      <div class="irow"><label>Ops / Tech (K€/año)<span id="lbl-ops">150K€</span></label><input type="range" id="inp-ops" min="50" max="500" step="10" value="150" oninput="onInp('ops',this.value)"></div>
+    </div>
+
+    <button class="reset-btn" onclick="resetToScenario()">↺ Resetear a escenario activo</button>
+  </div>
+
+  <div class="content">
+
+    <div class="kpi-strip">
+      <div class="kpi g"><div class="kpi-lbl">ARR Año 3</div><div class="kpi-val" id="kpi-arr">—</div><div class="kpi-sub">vs 3,1M€ base</div><div class="kpi-d up" id="kpi-arrx">—</div></div>
+      <div class="kpi"><div class="kpi-lbl">MRR Mes 36</div><div class="kpi-val" id="kpi-mrr">—</div><div class="kpi-sub" id="kpi-units">—</div><div class="kpi-d nt">vehículos activos</div></div>
+      <div class="kpi g"><div class="kpi-lbl">Contrib. Operativa</div><div class="kpi-val" id="kpi-mg">—</div><div class="kpi-sub">Revenue − MK − HC</div><div class="kpi-d up" id="kpi-mga">—</div></div>
+      <div class="kpi" id="kpi-lc-card"><div class="kpi-lbl">LTV / CAC</div><div class="kpi-val" id="kpi-lc">—</div><div class="kpi-sub">ratio consolidado</div><div class="kpi-d up">Benchmark: >3x</div></div>
+      <div class="kpi a"><div class="kpi-lbl">CAC Blended</div><div class="kpi-val" id="kpi-cac">—</div><div class="kpi-sub">inbound + outbound</div><div class="kpi-d" id="kpi-pb">—</div></div>
+      <div class="kpi"><div class="kpi-lbl">ROI s/ MK</div><div class="kpi-val" id="kpi-roi">—</div><div class="kpi-sub">Revenue 36M / budget MK</div><div class="kpi-d" id="kpi-roin">—</div></div>
+    </div>
+
+    <div class="charts-grid">
+      <div class="chart-card"><h3>MRR por Canal — Meses 1 a 36</h3><canvas id="mrrChart"></canvas></div>
+      <div class="chart-card"><h3>Mix Revenue Mes 36</h3><canvas id="mixChart"></canvas></div>
+    </div>
+
+    <div class="pl-card">
+      <div class="pl-head">
+        <h3>P&amp;L Revenue · <span id="sc-label">Base</span></h3>
+        <div class="tabs">
+          <div class="tab active" onclick="switchTab('y1')">Año 1</div>
+          <div class="tab" onclick="switchTab('y2')">Año 2</div>
+          <div class="tab" onclick="switchTab('y3')">Año 3</div>
+          <div class="tab" onclick="switchTab('cu')">36M Acum.</div>
+        </div>
+      </div>
+      <div id="pl-content"></div>
+    </div>
+
+    <div class="acq-card">
+      <h3>Supuestos de adquisición — referencia estática</h3>
+      <table class="acq-table">
+        <thead><tr><th>Canal</th><th>CPL Ref.</th><th>Lead→SAT</th><th>Closing</th><th>CAC Est.</th><th>Mix NB</th><th>Segmento</th></tr></thead>
+        <tbody>
+          <tr><td>Inbound Orgánico / SEM</td><td>90€</td><td>37%</td><td id="at-cri">51%</td><td id="at-caci">—</td><td>60%</td><td><span class="badge bb">SMB + Large</span></td></tr>
+          <tr><td>Outbound BDR</td><td>—</td><td>25%</td><td id="at-cro">35%</td><td id="at-caco">—</td><td>25%</td><td><span class="badge bg">Large + Enterprise</span></td></tr>
+          <tr><td>Micro (1–4 veh.) — Automatizado</td><td>45€</td><td>18%</td><td>Self-serve</td><td>~320€</td><td>15%</td><td><span class="badge ba">Micro / PLG</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
+
+<div class="ft">
+  <span>Alberto Vera · Senior Revenue Executive</span>
+  <span>Verizon Connect Iberia · Revenue P&L Model · Proyección 36 meses</span>
+</div>
+
+<script>
+const PRESETS={
+  cons:{arpu:12,churn:5.5,exprate:0.8,mk1:480,mk2:560,mk3:640,crIn:45,crOut:28,hcS:6,cS:38,hcC:4,cC:32,ops:120,grIn:1.5,grOut:1.2},
+  base:{arpu:12.5,churn:4,exprate:1.2,mk1:650,mk2:850,mk3:1050,crIn:51,crOut:35,hcS:8,cS:40,hcC:5,cC:35,ops:150,grIn:2.2,grOut:1.8},
+  agr:{arpu:13,churn:3,exprate:1.8,mk1:900,mk2:1300,mk3:1800,crIn:56,crOut:42,hcS:12,cS:42,hcC:7,cC:36,ops:200,grIn:3.0,grOut:2.5}
+};
+const LBLFMT={
+  arpu:v=>parseFloat(v).toFixed(1)+'€',churn:v=>parseFloat(v).toFixed(1)+'%',exprate:v=>parseFloat(v).toFixed(1)+'%',
+  mk1:v=>parseInt(v)+'K€',mk2:v=>parseInt(v)+'K€',mk3:v=>parseInt(v)+'K€',
+  crIn:v=>parseInt(v)+'%',crOut:v=>parseInt(v)+'%',
+  grIn:v=>parseFloat(v).toFixed(1)+'%',grOut:v=>parseFloat(v).toFixed(1)+'%',
+  hcS:v=>parseInt(v),cS:v=>parseInt(v)+'K€',hcC:v=>parseInt(v),cC:v=>parseInt(v)+'K€',ops:v=>parseInt(v)+'K€'
+};
+let P={...PRESETS.base},curSc='base',curTab='y1',mrrC=null,mixC=null;
+const BASE_MRR=258000;
+function onInp(k,v){P[k]=parseFloat(v);const el=document.getElementById('lbl-'+k);if(el)el.textContent=LBLFMT[k](v);render();}
+function sim(){
+  const cm=(P.churn/100)/12,er=P.exprate/100;
+  let ib=BASE_MRR*.55,ob=BASE_MRR*.15,ex=BASE_MRR*.30,data=[];
+  for(let m=1;m<=36;m++){
+    const ni=12000*Math.pow(1+P.grIn/100,m-1),no=5000*Math.pow(1+P.grOut/100,m-1);
+    const cl=(ib+ob+ex)*cm;
+    ib+=ni-cl*.55;ob+=no-cl*.15;ex+=((ib+ob+ex)*er)-cl*.30;
+    ib=Math.max(0,ib);ob=Math.max(0,ob);ex=Math.max(0,ex);
+    data.push({m,ib:Math.round(ib),ob:Math.round(ob),ex:Math.round(ex),tot:Math.round(ib+ob+ex)});
+  }
+  return data;
+}
+function yr(data,y){
+  const sl=data.slice((y-1)*12,y*12),avg=k=>sl.reduce((a,r)=>a+r[k],0)/sl.length;
+  return{ai:Math.round(avg('ib')*12),ao:Math.round(avg('ob')*12),ae:Math.round(avg('ex')*12),at:Math.round(avg('tot')*12),me:sl[sl.length-1].tot};
+}
+function costs(y){const mk=[P.mk1,P.mk2,P.mk3][y-1]*1000,s=P.hcS*P.cS*1000,c=P.hcC*P.cC*1000,o=P.ops*1000;return{mk,s,c,o,tot:mk+s+c+o};}
+function costsAcum(){const mk=(P.mk1+P.mk2+P.mk3)*1000,s=P.hcS*P.cS*1000*3,c=P.hcC*P.cC*1000*3,o=P.ops*1000*3;return{mk,s,c,o,tot:mk+s+c+o};}
+function fe(v,d=0){const a=Math.abs(v);if(a>=1e6)return(v/1e6).toFixed(1)+'M€';if(a>=1e3)return(v/1e3).toFixed(d)+'K€';return v.toFixed(d)+'€';}
+function fp(v){return(v*100).toFixed(1)+'%';}
+function fx(v){return v.toFixed(1)+'x';}
+function updKPIs(data){
+  const l=data[35],arrY3=l.tot*12,g=(arrY3/(BASE_MRR*12)-1)*100;
+  const tmk=(P.mk1+P.mk2+P.mk3)*1000,thc=(P.hcS*P.cS+P.hcC*P.cC)*1000*3+P.ops*1000*3,tc=tmk+thc;
+  const tr=data.reduce((a,r)=>a+r.tot,0),cb=tr-tc,cbp=cb/tr;
+  const cacI=Math.round((P.mk1*1000*.7)/Math.max(1,(P.mk1*1000*.7/90)*.37*(P.crIn/100)));
+  const cacO=Math.round((P.hcS*P.cS*1000*.4)/Math.max(1,P.hcS*18*(P.crOut/100)));
+  const cacB=Math.round(cacI*.65+cacO*.35);
+  const ltv=Math.round(P.arpu*(1/((P.churn/100)/12))),lc=ltv/cacB;
+  const pb=Math.round(cacB/(P.arpu*.65)),roi=Math.round((tr/tmk-1)*100);
+  document.getElementById('kpi-arr').textContent=fe(arrY3);
+  document.getElementById('kpi-arrx').textContent='+'+g.toFixed(0)+'% vs base';
+  document.getElementById('kpi-mrr').textContent=fe(l.tot);
+  document.getElementById('kpi-units').textContent=Math.round(l.tot/P.arpu).toLocaleString()+'K vehículos';
+  document.getElementById('kpi-mg').textContent=fp(cbp);
+  document.getElementById('kpi-mga').textContent=fe(cb)+' contrib.';
+  document.getElementById('kpi-mga').className='kpi-d '+(cb>0?'up':'dn');
+  document.getElementById('kpi-lc').textContent=fx(lc);
+  document.getElementById('kpi-cac').textContent=fe(cacB);
+  document.getElementById('kpi-pb').textContent='Payback: ~'+pb+' meses';
+  document.getElementById('kpi-roi').textContent=roi+'%';
+  document.getElementById('kpi-roin').textContent=roi>200?'↑ eficiente':'↓ revisar';
+  document.getElementById('kpi-roin').className='kpi-d '+(roi>200?'up':'dn');
+  document.getElementById('at-cri').textContent=P.crIn+'%';
+  document.getElementById('at-cro').textContent=P.crOut+'%';
+  document.getElementById('at-caci').textContent=fe(cacI);
+  document.getElementById('at-caco').textContent=fe(cacO);
+}
+function updCharts(data){
+  const lbs=data.map(d=>'M'+d.m);
+  const ia=data.map(d=>+(d.ib/1000).toFixed(1)),oa=data.map(d=>+(d.ob/1000).toFixed(1));
+  const ea=data.map(d=>+(d.ex/1000).toFixed(1)),ta=data.map(d=>+(d.tot/1000).toFixed(1));
+  if(mrrC)mrrC.destroy();
+  mrrC=new Chart(document.getElementById('mrrChart').getContext('2d'),{
+    type:'line',data:{labels:lbs,datasets:[
+      {label:'Inbound NB',data:ia,borderColor:'#1A1A1A',backgroundColor:'rgba(26,26,26,.06)',borderWidth:1.5,pointRadius:0,fill:true,tension:.4},
+      {label:'Outbound NB',data:oa,borderColor:'#4A5568',backgroundColor:'rgba(74,85,104,.06)',borderWidth:1.5,pointRadius:0,fill:true,tension:.4},
+      {label:'Expansion CS',data:ea,borderColor:'#888',backgroundColor:'rgba(136,136,136,.06)',borderWidth:1.5,pointRadius:0,fill:true,tension:.4},
+      {label:'Total MRR',data:ta,borderColor:'#1A1A1A',backgroundColor:'transparent',borderWidth:2,pointRadius:0,fill:false,tension:.4,borderDash:[4,3]}
+    ]},
+    options:{responsive:true,maintainAspectRatio:true,
+      plugins:{legend:{position:'bottom',labels:{font:{size:9},boxWidth:8,padding:10,color:'#888'}},tooltip:{callbacks:{label:c=>c.dataset.label+': '+c.parsed.y+'K€'}}},
+      scales:{x:{grid:{display:false},ticks:{font:{size:9},color:'#888',maxTicksLimit:12}},y:{grid:{color:'#F0F0F0'},ticks:{font:{size:9},color:'#888',callback:v=>v+'K€'}}}}
+  });
+  const l=data[35];
+  if(mixC)mixC.destroy();
+  mixC=new Chart(document.getElementById('mixChart').getContext('2d'),{
+    type:'doughnut',
+    data:{labels:['Inbound NB','Outbound NB','Expansion CS'],datasets:[{data:[l.ib,l.ob,l.ex],backgroundColor:['#1A1A1A','#4A5568','#888'],borderWidth:0,hoverOffset:4}]},
+    options:{responsive:true,maintainAspectRatio:true,cutout:'62%',
+      plugins:{legend:{position:'bottom',labels:{font:{size:9},boxWidth:8,padding:10,color:'#888'}},tooltip:{callbacks:{label:c=>c.label+': '+fe(c.parsed)+'/mes'}}}}
+  });
+}
+function buildPL(data,tab){
+  const isAcum=tab==='cu';
+  const y=isAcum?null:parseInt(tab[1]);
+  const d=isAcum?(()=>{const a=yr(data,1),b=yr(data,2),c=yr(data,3);return{ai:a.ai+b.ai+c.ai,ao:a.ao+b.ao+c.ao,ae:a.ae+b.ae+c.ae,at:a.at+b.at+c.at};})():yr(data,y);
+  const cs=isAcum?costsAcum():costs(y);
+  const cb=d.at-cs.tot,cbp=cb/d.at;
+  const cacI=Math.round((P.mk1*1000*.7)/Math.max(1,(P.mk1*1000*.7/90)*.37*(P.crIn/100)));
+  const ltv=Math.round(P.arpu*(1/((P.churn/100)/12))),lc=(ltv/cacI).toFixed(1);
+  const col=isAcum?'Acumulado 36M':'ARR Año '+y;
+  return`<table class="pl-table">
+  <thead><tr><th>Línea</th><th>${col}</th><th>% Rev.</th><th>Nota</th></tr></thead>
+  <tbody>
+  <tr class="rs"><td colspan="4">Ingresos</td></tr>
+  <tr><td>&nbsp;&nbsp;Inbound New Business</td><td>${fe(d.ai)}</td><td>${fp(d.ai/d.at)}</td><td>Closing ${P.crIn}% · CPL ref. 90€</td></tr>
+  <tr><td>&nbsp;&nbsp;Outbound New Business</td><td>${fe(d.ao)}</td><td>${fp(d.ao/d.at)}</td><td>Closing ${P.crOut}% · BDR-led</td></tr>
+  <tr><td>&nbsp;&nbsp;Expansion / CS</td><td>${fe(d.ae)}</td><td>${fp(d.ae/d.at)}</td><td>Fleet gap + cross-sell · ${P.exprate}%/mes</td></tr>
+  <tr class="rsu"><td>Revenue total</td><td>${fe(d.at)}</td><td>100%</td><td></td></tr>
+  <tr class="rs"><td colspan="4">Inversión marketing</td></tr>
+  <tr><td>&nbsp;&nbsp;Budget Marketing${isAcum?' (3 años)':' Año '+y}</td><td class="neg">(${fe(cs.mk)})</td><td class="neg">${fp(cs.mk/d.at)}</td><td></td></tr>
+  <tr class="rs"><td colspan="4">Headcount & estructura</td></tr>
+  <tr><td>&nbsp;&nbsp;Ventas (${P.hcS} pers. × ${P.cS}K€${isAcum?' × 3':''})</td><td class="neg">(${fe(cs.s)})</td><td class="neg">${fp(cs.s/d.at)}</td><td>BDRs + Account Exec</td></tr>
+  <tr><td>&nbsp;&nbsp;CS + Onboarding (${P.hcC} pers. × ${P.cC}K€${isAcum?' × 3':''})</td><td class="neg">(${fe(cs.c)})</td><td class="neg">${fp(cs.c/d.at)}</td><td>CS + Formación</td></tr>
+  <tr><td>&nbsp;&nbsp;Ops / Tech Stack${isAcum?' × 3':''}</td><td class="neg">(${fe(cs.o)})</td><td class="neg">${fp(cs.o/d.at)}</td><td>CRM + Tools + Mgmt</td></tr>
+  <tr class="ropex"><td>Total costes</td><td class="neg">(${fe(cs.tot)})</td><td class="neg">${fp(cs.tot/d.at)}</td><td></td></tr>
+  <tr class="rmarg"><td>Contribución operativa</td><td class="${cb>=0?'pos':'neg'}">${fe(cb)}</td><td class="${cb>=0?'pos':'neg'}">${fp(cbp)}</td><td>Revenue − MK − HC (no incluye COGS)</td></tr>
+  <tr class="rtot"><td>Ratios clave</td><td colspan="3">LTV/CAC: ${lc}x &nbsp;·&nbsp; CAC ref.: ${fe(cacI)} &nbsp;·&nbsp; LTV: ${fe(ltv)} &nbsp;·&nbsp; ARPU: ${P.arpu}€ &nbsp;·&nbsp; Churn: ${P.churn}%/año</td></tr>
+  </tbody></table>`;
+}
+function switchTab(t){
+  curTab=t;
+  document.querySelectorAll('.tab').forEach(el=>el.classList.toggle('active',el.getAttribute('onclick').includes("'"+t+"'")));
+  document.getElementById('pl-content').innerHTML=buildPL(sim(),t);
+}
+function setScenario(s){
+  curSc=s;
+  ['cons','base','agr'].forEach(k=>{document.getElementById('btn-'+k).className='sc-btn'+(k===s?' active':'');});
+  document.getElementById('sc-label').textContent={cons:'Conservador',base:'Base',agr:'Agresivo'}[s];
+  applyPreset(s);
+}
+function applyPreset(s){
+  P={...PRESETS[s]};
+  Object.keys(P).forEach(k=>{
+    const el=document.getElementById('inp-'+k);if(el)el.value=P[k];
+    const lb=document.getElementById('lbl-'+k);if(lb)lb.textContent=LBLFMT[k](P[k]);
+  });
+  render();
+}
+function resetToScenario(){applyPreset(curSc);}
+function render(){const data=sim();updKPIs(data);updCharts(data);document.getElementById('pl-content').innerHTML=buildPL(data,curTab);}
+document.addEventListener('DOMContentLoaded',()=>setScenario('base'));
+</script>
+</body>
+</html>

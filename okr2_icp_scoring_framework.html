@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ICP Scoring Framework · Verizon Connect Iberia</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:#fff;color:#1A1A1A;font-size:15px;line-height:1.7}
+.hd{padding:2.5rem 3rem 1.75rem;border-bottom:2px solid #1A1A1A}
+.hd-inner{max-width:900px;margin:0 auto;display:flex;justify-content:space-between;align-items:flex-end}
+.hd-eye{font-size:12px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#888;margin-bottom:.6rem}
+.hd-title{font-family:Georgia,serif;font-size:34px;font-weight:400;color:#1A1A1A;line-height:1.15}
+.hd-sub{font-size:14px;color:#666;margin-top:.4rem}
+.hd-meta{text-align:right;font-size:12px;color:#888;line-height:1.9}
+.hd-meta strong{display:block;font-size:14px;color:#1A1A1A;font-weight:500}
+.body{max-width:900px;margin:0 auto;padding:2.5rem 3rem 4rem}
+.sec{margin-bottom:2.5rem}
+.sec-lbl{font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#888;border-left:2px solid #1A1A1A;padding-left:.6rem;margin-bottom:1.25rem}
+.divider{border:none;border-top:1px solid #D1D5DB;margin:2rem 0}
+table{width:100%;border-collapse:collapse;margin-bottom:2rem}
+thead tr{border-bottom:2px solid #1A1A1A}
+th{text-align:left;font-size:11px;font-weight:500;color:#888;letter-spacing:.06em;text-transform:uppercase;padding:8px 10px}
+td{padding:10px 10px;border-bottom:1px solid #D1D5DB;color:#1A1A1A;font-size:13px;vertical-align:top}
+tbody tr:last-child td{border-bottom:none}
+tbody tr:hover td{background:#F8F8F6}
+.pill{display:inline-block;padding:3px 9px;border-radius:2px;font-size:11px;font-weight:500}
+.pb{background:#E6F1FB;color:#0C447C}
+.pg{background:#EAF3DE;color:#27500A}
+.pa{background:#FAEEDA;color:#633806}
+.pr{background:#FCEBEB;color:#791F1F}
+.tier-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;margin-bottom:2rem}
+.tier-card{border:1px solid #D1D5DB;border-radius:2px;padding:1.25rem}
+.tier-card.ta{border-color:#1A1A1A;background:#F8F8F6}
+.tier-label{font-size:11px;font-weight:500;color:#888;margin-bottom:4px}
+.tier-name{font-family:Georgia,serif;font-size:26px;color:#1A1A1A;margin-bottom:6px}
+.tier-range{font-size:13px;color:#4A5568;margin-bottom:4px}
+.tier-action{font-size:12px;color:#888;margin-top:10px;padding-top:10px;border-top:1px solid #D1D5DB;line-height:1.5}
+.weight{font-weight:500;color:#1A1A1A}
+.scorer{background:#F8F8F6;border:1px solid #D1D5DB;border-radius:2px;padding:1.5rem;margin-bottom:2rem}
+.scorer-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:1.25rem}
+.scorer-field{display:flex;flex-direction:column;gap:6px}
+.scorer-field label{font-size:12px;font-weight:500;color:#4A5568}
+.scorer-field select{font-size:13px;padding:7px 10px;border-radius:2px;border:1px solid #D1D5DB;background:#fff;color:#1A1A1A;font-family:'Inter',sans-serif}
+.score-result{background:#fff;border:1px solid #D1D5DB;border-radius:2px;padding:1.25rem;display:flex;align-items:center;justify-content:space-between;gap:1.5rem}
+.score-number{font-family:Georgia,serif;font-size:42px;color:#1A1A1A}
+.score-label{font-size:11px;color:#888;margin-bottom:4px}
+.score-tier{font-size:15px;font-weight:500;color:#1A1A1A;margin-top:4px}
+.score-action{font-size:12px;color:#888;margin-top:4px}
+.score-bar-wrap{flex:1}
+.score-bar-bg{height:6px;background:#D1D5DB;border-radius:1px;overflow:hidden;margin-bottom:8px}
+.score-bar-fill{height:6px;transition:width .3s;background:#1A1A1A}
+.score-breakdown{font-size:11px;color:#888}
+.examples-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem}
+.example-card{border:1px solid #D1D5DB;border-radius:2px;padding:1rem}
+.ex-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:.75rem;padding-bottom:.75rem;border-bottom:1px solid #D1D5DB}
+.ex-name{font-size:14px;font-weight:500;color:#1A1A1A}
+.ex-rows{display:flex;flex-direction:column;gap:4px}
+.ex-row{display:flex;justify-content:space-between;font-size:12px;padding:2px 0}
+.ex-row span:first-child{color:#888}
+.ex-row span:last-child{font-weight:500}
+.ft{border-top:1px solid #D1D5DB;padding:1rem 3rem;display:flex;justify-content:space-between;font-size:12px;color:#888;max-width:900px;margin:0 auto}
+</style>
+</head>
+<body>
+
+<div class="hd">
+  <div class="hd-inner">
+    <div>
+      <div class="hd-eye">Ideal Customer Profile · Scoring Framework</div>
+      <div class="hd-title">Matriz de cualificación de cuentas</div>
+      <div class="hd-sub">Criterios firmográficos y de comportamiento · Verizon Connect Iberia</div>
+    </div>
+    <div class="hd-meta">
+      <strong>Alberto Vera</strong>
+      Senior Revenue Executive<br>
+      B2B SaaS · Fleet Management
+    </div>
+  </div>
+</div>
+
+<div class="body">
+
+  <div class="sec">
+    <div class="sec-lbl">Definición de tiers</div>
+    <div class="tier-grid">
+      <div class="tier-card ta">
+        <div class="tier-label">Tier A · Prioridad máxima</div>
+        <div class="tier-name">75–100</div>
+        <div class="tier-range">Large 50–99 · Enterprise +100</div>
+        <div class="tier-action">Asignación inmediata a closer · ABM personalizado · ciclo doble</div>
+      </div>
+      <div class="tier-card">
+        <div class="tier-label">Tier B · Prioridad media</div>
+        <div class="tier-name">45–74</div>
+        <div class="tier-range">SMB 5–49 · verticales core</div>
+        <div class="tier-action">Secuencia estándar · doble ciclo BDR + closer · nurturing activo</div>
+      </div>
+      <div class="tier-card">
+        <div class="tier-label">Tier C · Baja prioridad</div>
+        <div class="tier-name">0–44</div>
+        <div class="tier-range">Micro 1–4 · verticales fuera de ICP</div>
+        <div class="tier-action">Motion automatizado · BDR solo interviene en firma de contrato</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="sec">
+    <div class="sec-lbl">Criterios de scoring · pesos y puntuación</div>
+    <table>
+      <thead>
+        <tr>
+          <th>Criterio</th><th>Peso</th><th>Alta (A)</th><th>Media (B)</th><th>Baja (C)</th><th>Justificación</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Tamaño de flota</strong></td>
+          <td class="weight">30 pts</td>
+          <td><span class="pill pg">+50 vehículos · 30 pts</span></td>
+          <td><span class="pill pb">5–49 vehículos · 18 pts</span></td>
+          <td><span class="pill pa">1–4 vehículos · 6 pts</span></td>
+          <td>Correlación directa con LTV/CAC · Large 12,9x · Enterprise 19,8x</td>
+        </tr>
+        <tr>
+          <td><strong>Vertical</strong></td>
+          <td class="weight">25 pts</td>
+          <td><span class="pill pg">Transporte · 25 pts</span></td>
+          <td><span class="pill pb">Distribución · Construcción · 18 pts</span></td>
+          <td><span class="pill pa">Servicios profesionales · 10 pts</span></td>
+          <td>Mayor LTV y menor churn en verticales con dependencia operativa de la flota</td>
+        </tr>
+        <tr>
+          <td><strong>Canal de entrada</strong></td>
+          <td class="weight">25 pts</td>
+          <td><span class="pill pg">Referral cliente · Partner · 25 pts</span></td>
+          <td><span class="pill pb">Orgánico · SEM · 15 pts</span></td>
+          <td><span class="pill pa">META · LinkedIn · Lead providers · 8 pts</span></td>
+          <td>Referral tiene mayor intención de compra y menor ciclo de venta</td>
+        </tr>
+        <tr>
+          <td><strong>Señales de comportamiento</strong></td>
+          <td class="weight">20 pts</td>
+          <td><span class="pill pg">Demo request · Pricing · 20 pts</span></td>
+          <td><span class="pill pb">Descarga recursos · 12 pts</span></td>
+          <td><span class="pill pa">Visitas web · Apertura email · 5 pts</span></td>
+          <td>Demo request y pricing indican intención de compra activa · cierre más rápido</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <hr class="divider">
+
+  <div class="sec">
+    <div class="sec-lbl">Calculadora de scoring interactiva</div>
+    <div class="scorer">
+      <div class="scorer-grid">
+        <div class="scorer-field">
+          <label>Tamaño de flota</label>
+          <select id="f-flota" onchange="calcScore()">
+            <option value="30">+50 vehículos (Large / Enterprise)</option>
+            <option value="18" selected>5–49 vehículos (SMB)</option>
+            <option value="6">1–4 vehículos (Micro)</option>
+          </select>
+        </div>
+        <div class="scorer-field">
+          <label>Vertical</label>
+          <select id="f-vertical" onchange="calcScore()">
+            <option value="25">Transporte</option>
+            <option value="18" selected>Distribución / Construcción</option>
+            <option value="10">Servicios profesionales</option>
+          </select>
+        </div>
+        <div class="scorer-field">
+          <label>Canal de entrada</label>
+          <select id="f-canal" onchange="calcScore()">
+            <option value="25">Referral cliente / Partner</option>
+            <option value="15" selected>Orgánico / SEM</option>
+            <option value="8">META / LinkedIn / Lead provider</option>
+          </select>
+        </div>
+        <div class="scorer-field">
+          <label>Señal de comportamiento</label>
+          <select id="f-senal" onchange="calcScore()">
+            <option value="20">Demo request / Pricing</option>
+            <option value="12" selected>Descarga de recursos</option>
+            <option value="5">Visitas web / Apertura email</option>
+          </select>
+        </div>
+      </div>
+      <div class="score-result">
+        <div>
+          <div class="score-label">Puntuación total</div>
+          <div class="score-number" id="score-num">63</div>
+          <div class="score-tier" id="score-tier">Tier B · Prioridad media</div>
+          <div class="score-action" id="score-action">Secuencia estándar · doble ciclo BDR + closer</div>
+        </div>
+        <div class="score-bar-wrap">
+          <div class="score-bar-bg">
+            <div class="score-bar-fill" id="score-bar" style="width:63%"></div>
+          </div>
+          <div class="score-breakdown" id="score-breakdown">Flota 18 · Vertical 18 · Canal 15 · Señal 12</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="sec">
+    <div class="sec-lbl">Ejemplos de cuentas anonimizadas</div>
+    <div class="examples-grid">
+      <div class="example-card">
+        <div class="ex-header">
+          <div class="ex-name">Empresa A</div>
+          <span class="pill pg">92 pts · Tier A</span>
+        </div>
+        <div class="ex-rows">
+          <div class="ex-row"><span>Flota</span><span>80 vehículos</span></div>
+          <div class="ex-row"><span>Vertical</span><span>Transporte</span></div>
+          <div class="ex-row"><span>Canal</span><span>Referral cliente</span></div>
+          <div class="ex-row"><span>Señal</span><span>Demo request</span></div>
+          <div class="ex-row"><span>Acción</span><span>Closer inmediato</span></div>
+        </div>
+      </div>
+      <div class="example-card">
+        <div class="ex-header">
+          <div class="ex-name">Empresa B</div>
+          <span class="pill pb">58 pts · Tier B</span>
+        </div>
+        <div class="ex-rows">
+          <div class="ex-row"><span>Flota</span><span>20 vehículos</span></div>
+          <div class="ex-row"><span>Vertical</span><span>Construcción</span></div>
+          <div class="ex-row"><span>Canal</span><span>SEM</span></div>
+          <div class="ex-row"><span>Señal</span><span>Descarga recurso</span></div>
+          <div class="ex-row"><span>Acción</span><span>Secuencia BDR estándar</span></div>
+        </div>
+      </div>
+      <div class="example-card">
+        <div class="ex-header">
+          <div class="ex-name">Empresa C</div>
+          <span class="pill pa">29 pts · Tier C</span>
+        </div>
+        <div class="ex-rows">
+          <div class="ex-row"><span>Flota</span><span>3 vehículos</span></div>
+          <div class="ex-row"><span>Vertical</span><span>Servicios profesionales</span></div>
+          <div class="ex-row"><span>Canal</span><span>Lead provider</span></div>
+          <div class="ex-row"><span>Señal</span><span>Apertura email</span></div>
+          <div class="ex-row"><span>Acción</span><span>Motion automatizado</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="ft">
+  <span>Alberto Vera · Senior Revenue Executive</span>
+  <span>Verizon Connect Iberia · ICP Scoring Framework</span>
+</div>
+
+<script>
+function calcScore(){
+  const f=parseInt(document.getElementById('f-flota').value);
+  const v=parseInt(document.getElementById('f-vertical').value);
+  const c=parseInt(document.getElementById('f-canal').value);
+  const s=parseInt(document.getElementById('f-senal').value);
+  const total=f+v+c+s;
+  document.getElementById('score-num').textContent=total;
+  document.getElementById('score-breakdown').textContent='Flota '+f+' · Vertical '+v+' · Canal '+c+' · Señal '+s;
+  document.getElementById('score-bar').style.width=total+'%';
+  let tier,action;
+  if(total>=75){tier='Tier A · Prioridad máxima';action='Asignación inmediata a closer · ABM personalizado';}
+  else if(total>=45){tier='Tier B · Prioridad media';action='Secuencia estándar · doble ciclo BDR + closer';}
+  else{tier='Tier C · Baja prioridad';action='Motion automatizado · BDR solo interviene en firma';}
+  document.getElementById('score-tier').textContent=tier;
+  document.getElementById('score-action').textContent=action;
+}
+calcScore();
+</script>
+</body>
+</html>

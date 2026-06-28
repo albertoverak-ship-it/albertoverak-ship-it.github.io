@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GTM Motion Canvas · Verizon Connect Iberia 2014–2025</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:#fff;color:#1A1A1A;font-size:15px;line-height:1.7}
+
+/* HEADER */
+.hd{padding:2.5rem 3rem 1.75rem;border-bottom:2px solid #1A1A1A}
+.hd-inner{max-width:960px;margin:0 auto;display:flex;justify-content:space-between;align-items:flex-end}
+.hd-eye{font-size:12px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#888;margin-bottom:.6rem}
+.hd-title{font-family:Georgia,serif;font-size:34px;font-weight:400;color:#1A1A1A;line-height:1.15}
+.hd-title em{font-style:italic}
+.hd-sub{font-size:14px;color:#666;margin-top:.4rem;max-width:560px;line-height:1.5}
+.hd-meta{text-align:right;font-size:12px;color:#888;line-height:1.9;flex-shrink:0}
+.hd-meta strong{display:block;font-size:14px;color:#1A1A1A;font-weight:500}
+
+/* NAV */
+.nav{background:#F8F8F6;border-bottom:1px solid #D1D5DB;padding:.75rem 3rem;display:flex;gap:2rem;overflow-x:auto}
+.nav a{font-size:11px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:#888;text-decoration:none;white-space:nowrap;transition:color .15s}
+.nav a:hover{color:#1A1A1A}
+
+/* BODY */
+.body{max-width:960px;margin:0 auto;padding:2.5rem 3rem 4rem}
+.sec{margin-bottom:3rem}
+.sec-hd{display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem;padding-bottom:.75rem;border-bottom:2px solid #1A1A1A}
+.sec-num{font-family:Georgia,serif;font-size:13px;color:#888;font-style:italic;flex-shrink:0}
+.sec-title{font-family:Georgia,serif;font-size:22px;font-weight:400;color:#1A1A1A}
+.divider{border:none;border-top:1px solid #D1D5DB;margin:2rem 0}
+.note{background:#F8F8F6;border-left:2px solid #1A1A1A;padding:1rem 1.25rem;font-size:13px;color:#4A5568;line-height:1.6;margin-top:1.25rem}
+.note strong{color:#1A1A1A}
+
+/* TAM */
+.tam-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;margin-bottom:1.25rem}
+.tam-cell{border:1px solid #D1D5DB;border-radius:2px;padding:1.25rem}
+.tam-cell.tam{border-color:#1A1A1A;background:#F8F8F6}
+.tam-label{font-size:11px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:#888;margin-bottom:.5rem}
+.tam-value{font-family:Georgia,serif;font-size:32px;color:#1A1A1A;margin-bottom:.5rem}
+.tam-desc{font-size:12px;color:#4A5568;line-height:1.5;margin-bottom:.5rem}
+.tam-sub{font-size:11px;color:#888;font-style:italic}
+
+/* TIMELINE */
+.growth-bar{border:1px solid #D1D5DB;border-radius:2px;padding:1rem 1.25rem;margin-bottom:1.25rem;display:flex;justify-content:space-between;align-items:center;gap:1rem}
+.growth-curve{font-family:Georgia,serif;font-size:18px;color:#1A1A1A;flex-shrink:0}
+.growth-detail{font-size:12px;color:#4A5568;line-height:1.5}
+.growth-badge{font-size:11px;font-weight:600;background:#1A1A1A;color:#fff;padding:4px 10px;border-radius:2px;flex-shrink:0}
+
+.timeline{display:grid;grid-template-columns:repeat(7,1fr);gap:.5rem}
+.timeline-year{}
+.year-label{font-size:11px;font-weight:500;color:#888;margin-bottom:.4rem}
+.year-arr{font-family:Georgia,serif;font-size:15px;color:#1A1A1A;margin-bottom:4px}
+.year-arr.accent{font-weight:500}
+.year-milestone{font-size:10px;color:#888;line-height:1.5;margin-bottom:.4rem}
+.year-bar{height:4px;background:#F0F0F0;border-radius:1px;overflow:hidden}
+.year-bar-fill{height:4px;background:#1A1A1A;border-radius:1px}
+
+/* COMPETITIVE */
+.comp-grid{display:grid;grid-template-columns:1.8fr 1fr 2fr 2fr 1.2fr;font-size:12px;margin-bottom:1.25rem;border:1px solid #D1D5DB;border-radius:2px;overflow:hidden}
+.comp-header{font-size:10px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:#888;padding:.6rem .875rem;background:#F8F8F6;border-bottom:1px solid #D1D5DB}
+.comp-cell{padding:.875rem;border-bottom:1px solid #D1D5DB;color:#4A5568;border-right:1px solid #D1D5DB;line-height:1.5}
+.comp-cell:last-child{border-right:none}
+.comp-cell.hi{background:#F8F8F6;color:#1A1A1A}
+.comp-name{font-weight:500;color:#1A1A1A;margin-bottom:4px}
+.comp-tag{display:inline-block;font-size:9px;font-weight:600;padding:1px 6px;border-radius:2px;letter-spacing:.04em}
+.tag-us{background:#1A1A1A;color:#fff}
+.tag-strong{background:#E6F1FB;color:#0C447C}
+.tag-weak{background:#F8F8F6;color:#888;border:1px solid #D1D5DB}
+.tag-acq{background:#FAEEDA;color:#633806}
+
+/* PRICING */
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;margin-bottom:1rem}
+.pricing-card{border:1px solid #D1D5DB;border-radius:2px;padding:1.25rem}
+.pricing-card.featured{border-color:#1A1A1A;background:#F8F8F6}
+.pricing-tier{font-size:11px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:#888;margin-bottom:.5rem}
+.pricing-price{font-family:Georgia,serif;font-size:32px;color:#1A1A1A}
+.pricing-unit{font-size:12px;color:#888;margin-bottom:.75rem}
+.pricing-target{font-size:12px;font-weight:500;color:#4A5568;margin-bottom:.75rem;padding-bottom:.75rem;border-bottom:1px solid #D1D5DB}
+.pricing-features{list-style:none;font-size:12px;color:#4A5568;line-height:2}
+.pricing-features li::before{content:"—";margin-right:8px;color:#888}
+.pricing-arpu{font-size:11px;color:#888;margin-top:.75rem;padding-top:.75rem;border-top:1px solid #D1D5DB;font-style:italic}
+.addons-bar{background:#F8F8F6;border:1px solid #D1D5DB;border-radius:2px;padding:.875rem 1.25rem;display:flex;flex-wrap:wrap;align-items:center;gap:1rem;font-size:12px;color:#4A5568}
+.addon-item{display:flex;gap:.4rem}
+.addon-name{font-weight:500;color:#1A1A1A}
+.addon-price{color:#888}
+
+/* PLG */
+.plg-flow{display:grid;grid-template-columns:repeat(6,1fr);gap:.5rem;margin-bottom:1.25rem}
+.plg-step{border:1px solid #D1D5DB;border-radius:2px;padding:.875rem .75rem}
+.plg-step-title{font-size:12px;font-weight:500;color:#1A1A1A;margin-bottom:4px}
+.plg-step-desc{font-size:11px;color:#4A5568;line-height:1.5;margin-bottom:.5rem}
+.plg-metric{font-size:10px;font-weight:500;color:#888;background:#F8F8F6;padding:2px 6px;border-radius:2px;display:inline-block}
+.plg-impact{display:grid;grid-template-columns:repeat(4,1fr);gap:.75rem;margin-bottom:1rem}
+.impact-cell{border:1px solid #D1D5DB;border-radius:2px;padding:1rem;text-align:center}
+.impact-num{font-family:Georgia,serif;font-size:28px;color:#1A1A1A}
+.impact-label{font-size:11px;color:#888;margin-top:4px;line-height:1.4}
+
+/* CHANNEL TABLE */
+table{width:100%;border-collapse:collapse;margin-bottom:1.25rem}
+thead tr{border-bottom:2px solid #1A1A1A}
+th{text-align:left;font-size:10px;font-weight:500;color:#888;letter-spacing:.06em;text-transform:uppercase;padding:8px 10px}
+td{padding:9px 10px;border-bottom:1px solid #D1D5DB;color:#1A1A1A;font-size:12px;vertical-align:top}
+tbody tr:last-child td{border-bottom:none}
+tbody tr:hover td{background:#F8F8F6}
+.ch-name{font-weight:500;color:#1A1A1A}
+.ch-type{display:inline-block;font-size:9px;font-weight:600;padding:1px 6px;border-radius:2px;letter-spacing:.04em}
+.type-in{background:#EAF3DE;color:#27500A}
+.type-out{background:#E6F1FB;color:#0C447C}
+.type-exp{background:#EEEDFE;color:#3C3489}
+.bar-wrap{display:flex;align-items:center;gap:6px}
+.mini-bar{width:60px;height:4px;background:#E8E8E8;border-radius:1px;overflow:hidden;flex-shrink:0}
+.mini-bar-fill{height:4px;background:#1A1A1A;border-radius:1px}
+.bar-pct{font-size:11px;color:#888}
+.num-pos{font-weight:500;color:#1A1A1A}
+.num-nt{color:#4A5568}
+.pill{display:inline-block;padding:2px 7px;border-radius:2px;font-size:10px;font-weight:500}
+.pg{background:#EAF3DE;color:#27500A}
+.pb{background:#E6F1FB;color:#0C447C}
+.pa{background:#FAEEDA;color:#633806}
+
+/* FUNNEL STAGES */
+.funnel-stages{display:grid;grid-template-columns:repeat(5,1fr);gap:.5rem;margin-bottom:1.25rem}
+.fstage{border:1px solid #D1D5DB;border-radius:2px;padding:.875rem .75rem}
+.fstage-top{height:3px;background:#D1D5DB;border-radius:1px;margin-bottom:.75rem}
+.fstage-top.t1{background:#888}
+.fstage-top.t2{background:#4A5568}
+.fstage-top.t3{background:#1A1A1A}
+.fstage-top.t4{background:#1A1A1A}
+.fstage-top.t5{background:#27500A}
+.fstage-label{font-size:10px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:#888;margin-bottom:4px}
+.fstage-name{font-size:13px;font-weight:500;color:#1A1A1A;margin-bottom:.75rem}
+.fstage-metrics{list-style:none;font-size:11px;color:#4A5568;line-height:1.9}
+.fstage-metrics li{display:flex;justify-content:space-between}
+.fstage-metrics li span:last-child{font-weight:500;color:#1A1A1A}
+.fstage-owner{font-size:10px;color:#888;margin-top:.6rem;padding-top:.6rem;border-top:1px solid #D1D5DB}
+
+/* ICP SEGMENTS */
+.icp-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.75rem;margin-top:1.25rem}
+.icp-seg{border:1px solid #D1D5DB;border-radius:2px;padding:1rem}
+.icp-seg-name{font-size:14px;font-weight:500;color:#1A1A1A;margin-bottom:2px}
+.icp-seg-size{font-size:11px;color:#888;margin-bottom:.75rem;padding-bottom:.75rem;border-bottom:1px solid #D1D5DB}
+.icp-detail{font-size:11px;color:#4A5568;line-height:1.8;margin-bottom:.5rem}
+.icp-tag{font-size:10px;font-weight:500;padding:2px 7px;border-radius:2px;display:inline-block}
+
+/* FORECAST */
+.forecast-top{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:1.25rem}
+.forecast-panel{border:1px solid #D1D5DB;border-radius:2px;padding:1.25rem}
+.forecast-panel.hi{border-color:#1A1A1A;background:#F8F8F6}
+.forecast-label{font-size:11px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:#888;margin-bottom:.4rem}
+.forecast-headline{font-family:Georgia,serif;font-size:32px;color:#1A1A1A;margin-bottom:.4rem}
+.forecast-sub{font-size:12px;color:#4A5568;line-height:1.5}
+.cf-name{font-weight:500;color:#1A1A1A}
+.cf-muted{font-size:10px;color:#888;margin-top:2px}
+tr.total-row td{font-weight:600;background:#1A1A1A;color:#fff;border-bottom:none}
+
+/* SCENARIOS */
+.scenario-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;margin-top:1.25rem}
+.scenario{border:1px solid #D1D5DB;border-radius:2px;padding:1.25rem}
+.scenario.base{border-color:#1A1A1A;background:#F8F8F6}
+.scenario-name{font-size:11px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:#888;margin-bottom:.4rem}
+.scenario-arr{font-family:Georgia,serif;font-size:26px;color:#1A1A1A;margin-bottom:.75rem;padding-bottom:.75rem;border-bottom:1px solid #D1D5DB}
+.scenario-assumptions{list-style:none;font-size:12px;color:#4A5568;line-height:1.9}
+.scenario-assumptions li::before{content:"—";margin-right:8px;color:#888}
+
+/* FOOTER */
+.ft{border-top:1px solid #D1D5DB;padding:1rem 3rem;display:flex;justify-content:space-between;font-size:12px;color:#888;max-width:960px;margin:0 auto}
+</style>
+</head>
+<body>
+
+<div class="hd">
+  <div class="hd-inner">
+    <div>
+      <div class="hd-eye">Go-To-Market Motion Canvas · 2014–2025</div>
+      <div class="hd-title">Go-To-Market<br><em>Motion Canvas</em></div>
+      <div class="hd-sub">Arquitectura completa de generación de ingresos: mercado, posicionamiento, canales, pricing, PLG motion y revenue forecast — datos reales ARR 3,1M€ → 17,3M€.</div>
+    </div>
+    <div class="hd-meta">
+      <strong>Alberto Vera</strong>
+      Senior Revenue Executive<br>
+      Movildata / Verizon Connect Iberia<br>
+      B2B SaaS · Fleet Management
+    </div>
+  </div>
+</div>
+
+<nav class="nav">
+  <a href="#market">01 · TAM/SAM/SOM</a>
+  <a href="#competitive">02 · Competitive</a>
+  <a href="#pricing">03 · Pricing</a>
+  <a href="#plg">04 · PLG Motion</a>
+  <a href="#channels">05 · Channel Mix</a>
+  <a href="#funnel">06 · Funnel Stages</a>
+  <a href="#forecast">07 · Revenue Forecast</a>
+</nav>
+
+<div class="body">
+
+  <!-- 01 MARKET -->
+  <div class="sec" id="market">
+    <div class="sec-hd">
+      <span class="sec-num">01</span>
+      <span class="sec-title">Mercado: TAM / SAM / SOM</span>
+    </div>
+    <div class="tam-grid">
+      <div class="tam-cell tam">
+        <div class="tam-label">TAM — Mercado Total</div>
+        <div class="tam-value">€4.2B</div>
+        <div class="tam-desc">Fleet management SaaS en Europa Occidental (ES, PT, FR, IT, DE). Estimado sobre base de ~12M vehículos comerciales con penetración tecnológica del 28% en 2024.</div>
+        <div class="tam-sub">~1.2M empresas con flota 2+ vehículos · Europa Occidental</div>
+      </div>
+      <div class="tam-cell">
+        <div class="tam-label">SAM — Mercado Direccionable</div>
+        <div class="tam-value">€680M</div>
+        <div class="tam-desc">España y Portugal: ~280K empresas con flota activa. Segmentos B2B micro-enterprise a large (2–300 vehículos). Penetración SaaS de telemática ~22% en 2024.</div>
+        <div class="tam-sub">~280K empresas · ES + PT · 2–300 vehículos</div>
+      </div>
+      <div class="tam-cell">
+        <div class="tam-label">SOM — Mercado Obtenible</div>
+        <div class="tam-value">€34M</div>
+        <div class="tam-desc">ARR capturado en base activa 2025: 120K+ vehículos × 12€ ARPU × 12. Cuota de mercado estimada en ES+PT: ~5% del SAM. Headroom real: 10–15% adicional sin expansión geográfica.</div>
+        <div class="tam-sub">120K+ vehículos activos · 17,3M€ ARR base 2025</div>
+      </div>
+    </div>
+    <div class="growth-bar">
+      <div class="growth-curve">3,1M€ → 17,3M€ ARR</div>
+      <div class="growth-detail">Crecimiento real validado: de 20.000 vehículos (ARR base 2018) a 120.000+ vehículos en 2025. Múltiplo: <strong>5,6x en 7 años</strong> en mercado ibérico sin expansión geográfica. CAGR implícita: ~28%.</div>
+      <div class="growth-badge">CAGR ~28% · 7Y</div>
+    </div>
+    <div class="timeline">
+      <div class="timeline-year"><div class="year-label">2018</div><div class="year-arr">3,1M€</div><div class="year-milestone">Base adquisición<br>20K vehículos<br>~13€ ARPU</div><div class="year-bar"><div class="year-bar-fill" style="width:18%"></div></div></div>
+      <div class="timeline-year"><div class="year-label">2019</div><div class="year-arr">4,8M€</div><div class="year-milestone">M&A Verizon<br>Integración ops<br>ABM launch</div><div class="year-bar"><div class="year-bar-fill" style="width:28%"></div></div></div>
+      <div class="timeline-year"><div class="year-label">2020</div><div class="year-arr">6,5M€</div><div class="year-milestone">COVID challenge<br>Fleet gap trigger<br>+35% CS expansion</div><div class="year-bar"><div class="year-bar-fill" style="width:38%"></div></div></div>
+      <div class="timeline-year"><div class="year-label">2021</div><div class="year-arr">9,2M€</div><div class="year-milestone">PLG Micro live<br>Outbound build<br>Portugal scale</div><div class="year-bar"><div class="year-bar-fill" style="width:53%"></div></div></div>
+      <div class="timeline-year"><div class="year-label">2022</div><div class="year-arr">12,1M€</div><div class="year-milestone">ABM Enterprise<br>TACO/ECO launch<br>Mix 70/30</div><div class="year-bar"><div class="year-bar-fill" style="width:70%"></div></div></div>
+      <div class="timeline-year"><div class="year-label">2023</div><div class="year-arr">14,8M€</div><div class="year-milestone">Headcount opt.<br>39→30 FTEs<br>Automatización</div><div class="year-bar"><div class="year-bar-fill" style="width:86%"></div></div></div>
+      <div class="timeline-year"><div class="year-label">2025</div><div class="year-arr accent">17,3M€</div><div class="year-milestone">120K+ vehículos<br>~12€ ARPU<br>Geotab handoff</div><div class="year-bar"><div class="year-bar-fill" style="width:100%"></div></div></div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- 02 COMPETITIVE -->
+  <div class="sec" id="competitive">
+    <div class="sec-hd">
+      <span class="sec-num">02</span>
+      <span class="sec-title">Competitive Landscape — Iberia</span>
+    </div>
+    <div class="comp-grid">
+      <div class="comp-header">Competidor</div><div class="comp-header">Precio / vehículo</div><div class="comp-header">Fortaleza</div><div class="comp-header">Debilidad vs. Movildata</div><div class="comp-header">Segmento</div>
+      <div class="comp-cell hi"><div class="comp-name">Movildata / Verizon Connect</div><span class="comp-tag tag-us">NOSOTROS</span></div>
+      <div class="comp-cell hi">12–17€/veh/mes</div>
+      <div class="comp-cell hi">Integración local + soporte ES/PT. Full-suite (ECO, TACO, Temperatura). CS proactivo con fleet gap scoring.</div>
+      <div class="comp-cell hi">—</div>
+      <div class="comp-cell hi">Micro → Enterprise</div>
+
+      <div class="comp-cell"><div class="comp-name">Verizon Connect Global</div><span class="comp-tag tag-strong">CORPORATE</span></div>
+      <div class="comp-cell">18–25€/veh</div>
+      <div class="comp-cell">Brand awareness global, integración ELD USA, ecosistema enterprise robusto.</div>
+      <div class="comp-cell">Precio más alto, onboarding complejo, poca adaptación local ibérica.</div>
+      <div class="comp-cell">Large + Enterprise</div>
+
+      <div class="comp-cell"><div class="comp-name">Webfleet (Bridgestone)</div><span class="comp-tag tag-strong">TIER 1</span></div>
+      <div class="comp-cell">14–22€/veh</div>
+      <div class="comp-cell">Marca reconocida en Europa, red distribución fuerte, hardware propio.</div>
+      <div class="comp-cell">UI anticuada percibida, soporte local lento, foco en hardware vs. SaaS.</div>
+      <div class="comp-cell">SMB → Large</div>
+
+      <div class="comp-cell"><div class="comp-name">Teltonika / Flespi</div><span class="comp-tag tag-weak">HARDWARE</span></div>
+      <div class="comp-cell">5–9€/veh</div>
+      <div class="comp-cell">Precio muy bajo, hardware de calidad, canal de partners fuerte.</div>
+      <div class="comp-cell">Sin plataforma SaaS propia real. Sin CS ni expansión.</div>
+      <div class="comp-cell">Micro (precio)</div>
+
+      <div class="comp-cell"><div class="comp-name">Frotcom</div><span class="comp-tag tag-weak">REGIONAL</span></div>
+      <div class="comp-cell">10–15€/veh</div>
+      <div class="comp-cell">Fuerte en Portugal, pricing competitivo, buena reputación local.</div>
+      <div class="comp-cell">Escasa presencia en España. Suite limitada. Sin PLG.</div>
+      <div class="comp-cell">SMB PT · Transport</div>
+
+      <div class="comp-cell"><div class="comp-name">Geotab</div><span class="comp-tag tag-acq">ACQUIRER</span></div>
+      <div class="comp-cell">13–19€/veh</div>
+      <div class="comp-cell">Data platform líder global, marketplace de add-ons, API-first. Adquirió operaciones Verizon EU.</div>
+      <div class="comp-cell">Onboarding técnico exigente, poco soporte local ibérico.</div>
+      <div class="comp-cell">Large + Enterprise</div>
+    </div>
+    <div class="note"><strong>Posicionamiento diferencial:</strong> Movildata ganó cuota no por precio mínimo sino por (1) localización real en ES/PT con soporte nativo, (2) full-suite add-on con pricing modular competitivo, (3) CS proactivo con fleet gap scoring como mecanismo de expansion revenue, y (4) PLG motion que permitió servir el Micro sin coste de BDR. La transición Verizon → Geotab abre un vacío de proximidad local que puede ser explotado por operadores con ADN ibérico.</div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- 03 PRICING -->
+  <div class="sec" id="pricing">
+    <div class="sec-hd">
+      <span class="sec-num">03</span>
+      <span class="sec-title">Pricing Strategy & Packaging</span>
+    </div>
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <div class="pricing-tier">Basic · Micro</div>
+        <div class="pricing-price">12€</div>
+        <div class="pricing-unit">/ vehículo / mes</div>
+        <div class="pricing-target">Segmento: Micro 1–4 vehículos</div>
+        <ul class="pricing-features">
+          <li>GPS localización en tiempo real</li>
+          <li>Histórico de rutas 90 días</li>
+          <li>App móvil conductor</li>
+          <li>Informes básicos de actividad</li>
+          <li>Setup digital self-serve (PLG)</li>
+        </ul>
+        <div class="pricing-arpu">ARPU real: ~13€ · Churn: 7% · LTV/CAC: ~1,3x</div>
+      </div>
+      <div class="pricing-card featured">
+        <div class="pricing-tier">Pro · SMB / Large</div>
+        <div class="pricing-price">13–15€</div>
+        <div class="pricing-unit">/ vehículo / mes</div>
+        <div class="pricing-target">Segmento: SMB 5–49 · Large 50–99</div>
+        <ul class="pricing-features">
+          <li>Todo Basic + Dashboard avanzado</li>
+          <li>Alertas conducción + geofencing</li>
+          <li>Integración CRM/ERP básica</li>
+          <li>Gestor de cuenta dedicado (CS)</li>
+          <li>Onboarding asistido (día 1–120)</li>
+        </ul>
+        <div class="pricing-arpu">ARPU real: ~13€ SMB / ~13€ Large · Churn: 3–5%</div>
+      </div>
+      <div class="pricing-card">
+        <div class="pricing-tier">Enterprise · +100 veh</div>
+        <div class="pricing-price">16–17€</div>
+        <div class="pricing-unit">/ vehículo / mes</div>
+        <div class="pricing-target">Segmento: Enterprise +100 vehículos</div>
+        <ul class="pricing-features">
+          <li>Todo Pro + API completa</li>
+          <li>Módulos ECO / TACO / Temperatura</li>
+          <li>ABM one-to-one account management</li>
+          <li>SLA garantizado + soporte 24/7</li>
+          <li>Contratos multilocación / multisede</li>
+        </ul>
+        <div class="pricing-arpu">ARPU real: ~16–17€ · Churn: 3% · Deal: 150 veh avg</div>
+      </div>
+    </div>
+    <div class="addons-bar">
+      <span style="font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#888;flex-shrink:0">Add-ons (+2€/veh)</span>
+      <div class="addon-item"><span class="addon-name">ECO</span><span class="addon-price">+2€/veh</span> — Conducción eficiente, CO₂ report, score medioambiental</div>
+      <div class="addon-item"><span class="addon-name">TACO</span><span class="addon-price">+2€/veh</span> — Control tacógrafo digital, cumplimiento normativa EU</div>
+      <div class="addon-item"><span class="addon-name">Temperatura</span><span class="addon-price">+2€/veh</span> — Control cadena frío, alertas en tiempo real</div>
+      <span style="margin-left:auto;font-size:11px;color:#888;flex-shrink:0">~20% conversión en base activa</span>
+    </div>
+    <div class="note"><strong>Decisión de pricing:</strong> El modelo de niveles (Basic/Pro/Enterprise) más add-ons modulares permitió (1) reducir fricción de entrada en Micro con precio mínimo y self-serve, (2) capturar mayor ARPU en segmentos con mayor LTV sin subir precio base, y (3) generar expansion revenue de CAC cero sobre base instalada.</div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- 04 PLG -->
+  <div class="sec" id="plg">
+    <div class="sec-hd">
+      <span class="sec-num">04</span>
+      <span class="sec-title">PLG Motion — Automatización segmento Micro</span>
+    </div>
+    <div class="plg-flow">
+      <div class="plg-step"><div class="plg-step-title">Lead Capture</div><div class="plg-step-desc">Google Ads / SEM + landing page segmentada por tamaño de flota (1–4 veh)</div><div class="plg-metric">CPL: ~65€</div></div>
+      <div class="plg-step"><div class="plg-step-title">Auto-Qualify</div><div class="plg-step-desc">Form con fleet size → si ≤4 veh → ruta PLG automática. Sin intervención BDR.</div><div class="plg-metric">Trash rate: 20%</div></div>
+      <div class="plg-step"><div class="plg-step-title">Nurture Flow</div><div class="plg-step-desc">Secuencia Eloqua: welcome → product value → caso de uso vertical → prueba gratuita</div><div class="plg-metric">7 emails / 21 días</div></div>
+      <div class="plg-step"><div class="plg-step-title">Self-Serve</div><div class="plg-step-desc">Checkout digital: hardware + plan Basic + activación sin asistencia humana</div><div class="plg-metric">Closing: 18%</div></div>
+      <div class="plg-step"><div class="plg-step-title">Onboarding Auto</div><div class="plg-step-desc">Hardware preprogramado + guía app + trigger CS si señal de riesgo (no-login d7)</div><div class="plg-metric">Time-to-value: &lt;72h</div></div>
+      <div class="plg-step"><div class="plg-step-title">Expansion Signal</div><div class="plg-step-desc">Fleet gap scoring: total declarado vs. installed detectado. CS outreach si gap &gt;0</div><div class="plg-metric">NRR: ~105%</div></div>
+    </div>
+    <div class="plg-impact">
+      <div class="impact-cell"><div class="impact-num">55%</div><div class="impact-label">Leads Micro antes<br>del PLG motion</div></div>
+      <div class="impact-cell"><div class="impact-num">+10%</div><div class="impact-label">Mejora CAC global<br>al liberar BDRs</div></div>
+      <div class="impact-cell"><div class="impact-num">15→17%</div><div class="impact-label">Closing ratio global<br>tras redirigir capacidad</div></div>
+      <div class="impact-cell"><div class="impact-num">&lt;72h</div><div class="impact-label">Time-to-value Micro<br>sin intervención humana</div></div>
+    </div>
+    <div class="note"><strong>Lógica estratégica:</strong> El 55% de los leads eran Micro (1–4 vehículos) con LTV/CAC de 1,3x. Consumían tiempo de BDRs entrenados para cerrar SMB (14 veh avg, deal size 7–8x mayor). La automatización del flujo Micro no fue una decisión de producto — fue una decisión de capital allocation: redirigir tiempo de cierre hacia donde el retorno era 3–4x superior.</div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- 05 CHANNEL MIX -->
+  <div class="sec" id="channels">
+    <div class="sec-hd">
+      <span class="sec-num">05</span>
+      <span class="sec-title">Channel Mix & CAC por Canal</span>
+    </div>
+    <table>
+      <thead>
+        <tr><th>Canal</th><th>Tipo</th><th>Budget %</th><th>Leads %</th><th>Deals %</th><th>CAC estimado</th><th>Eficiencia</th><th>Owner</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><span class="ch-name">SEM / Google Ads</span></td><td><span class="ch-type type-in">Inbound</span></td><td>35%</td><td><div class="bar-wrap"><div class="mini-bar"><div class="mini-bar-fill" style="width:38%"></div></div><span class="bar-pct">38%</span></div></td><td>32%</td><td>780€</td><td><span class="pill pg">Alta</span></td><td>Marketing</td></tr>
+        <tr><td><span class="ch-name">Content / SEO</span></td><td><span class="ch-type type-in">Inbound</span></td><td>8%</td><td><div class="bar-wrap"><div class="mini-bar"><div class="mini-bar-fill" style="width:22%"></div></div><span class="bar-pct">22%</span></div></td><td>18%</td><td>420€</td><td><span class="pill pg">Muy alta</span></td><td>Marketing</td></tr>
+        <tr><td><span class="ch-name">Partner / Referral</span></td><td><span class="ch-type type-in">Inbound</span></td><td>12%</td><td><div class="bar-wrap"><div class="mini-bar"><div class="mini-bar-fill" style="width:18%"></div></div><span class="bar-pct">18%</span></div></td><td>24%</td><td>550€</td><td><span class="pill pg">Muy alta</span></td><td>BizDev + Mktg</td></tr>
+        <tr><td><span class="ch-name">Outbound SDR</span></td><td><span class="ch-type type-out">Outbound</span></td><td>28%</td><td><div class="bar-wrap"><div class="mini-bar"><div class="mini-bar-fill" style="width:12%"></div></div><span class="bar-pct">12%</span></div></td><td>18%</td><td>1.329€</td><td><span class="pill pb">Media</span></td><td>Sales / BDRs</td></tr>
+        <tr><td><span class="ch-name">Events / Offline</span></td><td><span class="ch-type type-out">Outbound</span></td><td>7%</td><td><div class="bar-wrap"><div class="mini-bar"><div class="mini-bar-fill" style="width:5%"></div></div><span class="bar-pct">5%</span></div></td><td>4%</td><td>1.800€</td><td><span class="pill pa">Baja-Media</span></td><td>Mktg + Sales</td></tr>
+        <tr><td><span class="ch-name">CS Expansion</span></td><td><span class="ch-type type-exp">Expansion</span></td><td>10%</td><td>—</td><td>—</td><td>~0€</td><td><span class="pill pg">Altísima</span></td><td>CS Team</td></tr>
+      </tbody>
+    </table>
+    <div class="note"><strong>Decisión estratégica 70/30:</strong> España fue el mercado más rentable de la región europea de Verizon con un mix 70% inbound / 30% outbound, frente al 80–90% inbound del resto de mercados europeos. El outbound no era volumen — era ABM de precisión en Large y Enterprise, con SDRs asignados a cuentas de alta probabilidad identificadas por fleet size, vertical y señales de comportamiento.</div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- 06 FUNNEL -->
+  <div class="sec" id="funnel">
+    <div class="sec-hd">
+      <span class="sec-num">06</span>
+      <span class="sec-title">Funnel Stages & Métricas por Etapa</span>
+    </div>
+    <div class="funnel-stages">
+      <div class="fstage"><div class="fstage-top t1"></div><div class="fstage-label">Top of Funnel</div><div class="fstage-name">Awareness & Capture</div><ul class="fstage-metrics"><li><span>Gross Leads / año</span><span>~20K</span></li><li><span>CPL promedio</span><span>~190€</span></li><li><span>Canales</span><span>SEM / SEO</span></li><li><span>Trash rate</span><span>35%</span></li></ul><div class="fstage-owner">Owner: Marketing</div></div>
+      <div class="fstage"><div class="fstage-top t2"></div><div class="fstage-label">Mid Funnel</div><div class="fstage-name">Qualification & SAT</div><ul class="fstage-metrics"><li><span>Net Leads</span><span>13.000</span></li><li><span>Lead → SAT</span><span>40%</span></li><li><span>SATs / año</span><span>5.200</span></li><li><span>ICP trigger</span><span>&gt;60 pts</span></li></ul><div class="fstage-owner">Owner: BDR / SDR</div></div>
+      <div class="fstage"><div class="fstage-top t3"></div><div class="fstage-label">Pipeline</div><div class="fstage-name">Demo & Proposal</div><ul class="fstage-metrics"><li><span>SAT → Opp</span><span>~65%</span></li><li><span>Cycle time avg</span><span>21–45d</span></li><li><span>Propuestas/mes</span><span>~430</span></li><li><span>Avg deal size</span><span>15 veh</span></li></ul><div class="fstage-owner">Owner: AE / Closer</div></div>
+      <div class="fstage"><div class="fstage-top t4"></div><div class="fstage-label">Close</div><div class="fstage-name">Negotiation & Won</div><ul class="fstage-metrics"><li><span>Closing ratio</span><span>55%</span></li><li><span>Deals / año</span><span>2.860</span></li><li><span>MRR new biz</span><span>~536K€</span></li><li><span>CAC global</span><span>1.329€</span></li></ul><div class="fstage-owner">Owner: AE + Legal</div></div>
+      <div class="fstage"><div class="fstage-top t5"></div><div class="fstage-label">Post-Sale</div><div class="fstage-name">Activation & Expansion</div><ul class="fstage-metrics"><li><span>Onboarding</span><span>Día 0–120</span></li><li><span>Handoff → CS</span><span>Día 120</span></li><li><span>Fleet gap review</span><span>Semanal</span></li><li><span>NRR objetivo</span><span>&gt;110%</span></li></ul><div class="fstage-owner">Owner: CS + Onboarding</div></div>
+    </div>
+    <div class="icp-grid">
+      <div class="icp-seg"><div class="icp-seg-name">Micro · 1–4 veh</div><div class="icp-seg-size">55% leads · 17% ARR</div><div class="icp-detail">ARPU 13€ · Churn 7%<br>LTV/CAC 1,3x<br>Motion: PLG self-serve<br>0 BDR · Fully automated</div><span class="icp-tag" style="background:#F8F8F6;color:#888;border:1px solid #D1D5DB">PLG · Self-serve</span></div>
+      <div class="icp-seg"><div class="icp-seg-name">SMB · 5–49 veh</div><div class="icp-seg-size">27% leads · 40% ARR</div><div class="icp-detail">ARPU 13€ · Churn 5%<br>Deal avg 14 veh<br>Motion: Inbound + BDR<br>CS P1 por volumen</div><span class="icp-tag" style="background:#EAF3DE;color:#27500A">Inbound → BDR</span></div>
+      <div class="icp-seg"><div class="icp-seg-name">Large · 50–99 veh</div><div class="icp-seg-size">15% leads · 30% ARR</div><div class="icp-detail">ARPU 13€ · Churn 3%<br>Deal avg 60 veh<br>Motion: ABM one-to-many<br>Cycle: 30–60d</div><span class="icp-tag" style="background:#E6F1FB;color:#0C447C">ABM one-to-many</span></div>
+      <div class="icp-seg"><div class="icp-seg-name">Enterprise · +100 veh</div><div class="icp-seg-size">3% leads · 13% ARR</div><div class="icp-detail">ARPU 16–17€ · Churn 3%<br>Deal avg 150 veh<br>Motion: ABM one-to-one<br>Cycle: 45–90d</div><span class="icp-tag" style="background:#EEEDFE;color:#3C3489">ABM one-to-one</span></div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- 07 FORECAST -->
+  <div class="sec" id="forecast">
+    <div class="sec-hd">
+      <span class="sec-num">07</span>
+      <span class="sec-title">Revenue Forecast por Canal</span>
+    </div>
+    <div class="forecast-top">
+      <div class="forecast-panel hi">
+        <div class="forecast-label">ARR Base Real 2025</div>
+        <div class="forecast-headline">17,3M€</div>
+        <div class="forecast-sub">120K+ vehículos × ~12€ ARPU × 12 meses. Validado como baseline de sostenibilidad sin nueva adquisición.</div>
+      </div>
+      <div class="forecast-panel">
+        <div class="forecast-label">LTV Total Acumulado 2014–2025</div>
+        <div class="forecast-headline">69,5M€</div>
+        <div class="forecast-sub">Inbound new biz 40,9M€ + Outbound new biz 12,3M€ + Expansion CS 16,4M€. LTV/CAC global: 3,3x.</div>
+      </div>
+    </div>
+    <table>
+      <thead>
+        <tr><th>Canal / Motion</th><th>Deals/año</th><th>Veh/deal avg</th><th>ARPU/mes</th><th>MRR contribución</th><th>ARR contribución</th><th>LTV (30 meses)</th><th>CAC canal</th><th>LTV/CAC</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><div class="cf-name">SEM / Google Ads</div><div class="cf-muted">Inbound · PLG Micro + BDR SMB</div></td><td>916</td><td>8 veh</td><td>13€</td><td>95,3K€</td><td class="num-pos">1,14M€</td><td>2,85M€</td><td>780€</td><td><span class="pill pg">3,7x</span></td></tr>
+        <tr><td><div class="cf-name">SEO / Content</div><div class="cf-muted">Inbound orgánico</div></td><td>515</td><td>10 veh</td><td>13€</td><td>66,9K€</td><td class="num-pos">803K€</td><td>2,0M€</td><td>420€</td><td><span class="pill pg">4,8x</span></td></tr>
+        <tr><td><div class="cf-name">Partner / Referral</div><div class="cf-muted">Inbound alta calidad</div></td><td>686</td><td>12 veh</td><td>13€</td><td>106,9K€</td><td class="num-pos">1,28M€</td><td>3,2M€</td><td>550€</td><td><span class="pill pg">5,8x</span></td></tr>
+        <tr><td><div class="cf-name">Outbound SDR / ABM</div><div class="cf-muted">Large + Enterprise · ABM</div></td><td>515</td><td>35 veh</td><td>15€</td><td>270,4K€</td><td class="num-pos">3,24M€</td><td>8,1M€</td><td>1.329€</td><td><span class="pill pg">6,1x</span></td></tr>
+        <tr><td><div class="cf-name">Events / Offline</div><div class="cf-muted">Ferias verticales · branding</div></td><td>114</td><td>12 veh</td><td>13€</td><td>17,8K€</td><td class="num-pos">213K€</td><td>533K€</td><td>1.800€</td><td><span class="pill pa">1,2x</span></td></tr>
+        <tr><td><div class="cf-name">CS Expansion (fleet gap + add-ons)</div><div class="cf-muted">Base instalada · CAC ~0€</div></td><td>—</td><td>—</td><td>+2€ add-on</td><td>~120K€/mes</td><td class="num-pos">~1,44M€</td><td>16,4M€ total</td><td>~0€</td><td><span class="pill pg">∞</span></td></tr>
+        <tr class="total-row"><td>Total período 2024–2025 <span style="font-size:10px;font-weight:400;opacity:.6">(LTV proyectado a 30 meses)</span></td><td>2.860</td><td>15 avg</td><td>12,5€</td><td>677K€</td><td>8,12M€</td><td>33,1M€</td><td>1.329€ blended</td><td>3,3x LTV/CAC</td></tr>
+      </tbody>
+    </table>
+    <div class="scenario-grid">
+      <div class="scenario"><div class="scenario-name">Conservador</div><div class="scenario-arr">13,5M€ ARR</div><ul class="scenario-assumptions"><li>Churn promedio +1,5pp</li><li>Closing ratio 45%</li><li>Sin expansión Portugal</li><li>Add-on conversion 10%</li><li>Budget flat sin inversión</li></ul></div>
+      <div class="scenario base"><div class="scenario-name">Base (Real 2025)</div><div class="scenario-arr">17,3M€ ARR</div><ul class="scenario-assumptions"><li>Churn 3–4% promedio</li><li>Closing ratio 55%</li><li>Mix 70/30 inbound/outbound</li><li>Add-on conversion ~20%</li><li>CS expansion activo</li></ul></div>
+      <div class="scenario"><div class="scenario-name">Agresivo</div><div class="scenario-arr">24M€ ARR</div><ul class="scenario-assumptions"><li>+30% budget MK sobre base</li><li>Expansión 2 verticales nuevos</li><li>ABM full-scale Enterprise</li><li>Add-on conversion 35%</li><li>Portugal: 10% MRR/mes</li></ul></div>
+    </div>
+  </div>
+
+</div>
+
+<div class="ft">
+  <span>Alberto Vera · Senior Revenue Executive</span>
+  <span>Verizon Connect Iberia · GTM Motion Canvas · 2014–2025</span>
+</div>
+
+</body>
+</html>
