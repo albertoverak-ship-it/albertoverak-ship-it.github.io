@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Case Study · Movildata Internacional 2016–2019 · Alberto Vera</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:#fff;color:#1A1A1A;font-size:15px;line-height:1.7}
+.hd{padding:2.5rem 3rem 1.75rem;border-bottom:2px solid #1A1A1A}
+.hd-inner{max-width:860px;margin:0 auto;display:flex;justify-content:space-between;align-items:flex-end}
+.hd-eye{font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#888;margin-bottom:.6rem}
+.hd-title{font-family:Georgia,serif;font-size:34px;font-weight:400;color:#1A1A1A;line-height:1.15}
+.hd-title em{font-style:italic}
+.hd-sub{font-size:14px;color:#666;margin-top:.5rem;max-width:520px;line-height:1.6}
+.hd-meta{text-align:right;font-size:12px;color:#888;line-height:1.9;flex-shrink:0}
+.hd-meta strong{display:block;font-size:13px;color:#1A1A1A;font-weight:500}
+.body{max-width:860px;margin:0 auto;padding:2.5rem 3rem 4rem}
+.tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:2rem}
+.tag{font-size:10px;font-weight:600;padding:3px 10px;border-radius:2px;letter-spacing:.04em}
+.tag-dark{background:#1A1A1A;color:#fff}
+.tag-mid{background:#F8F8F6;color:#888;border:1px solid #D1D5DB}
+.sec-lbl{font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#888;border-left:2px solid #1A1A1A;padding-left:.6rem;margin-bottom:1.25rem}
+.divider{border:none;border-top:1px solid #D1D5DB;margin:2rem 0}
+.context-box{background:#F8F8F6;border:1px solid #D1D5DB;border-radius:2px;padding:1.25rem 1.5rem;margin-bottom:2rem;display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
+.ctx-label{font-size:10px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:#888;margin-bottom:4px}
+.ctx-value{font-size:13px;font-weight:500;color:#1A1A1A;line-height:1.5}
+.body-text{font-size:14px;color:#4A5568;line-height:1.8;margin-bottom:1rem}
+.body-text strong{color:#1A1A1A;font-weight:500}
+.intervention-list{display:flex;flex-direction:column;gap:0}
+.int-item{display:grid;grid-template-columns:200px 1fr;gap:1.5rem;padding:1rem 0;border-bottom:1px solid #D1D5DB;align-items:start}
+.int-item:last-child{border-bottom:none}
+.int-label{font-size:12px;font-weight:600;color:#1A1A1A;padding-top:2px}
+.int-desc{font-size:13px;color:#4A5568;line-height:1.7}
+.int-desc strong{color:#1A1A1A;font-weight:500}
+.results-grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:1.5rem}
+.result-item{display:flex;gap:.75rem;align-items:flex-start;border:1px solid #D1D5DB;border-radius:2px;padding:.875rem 1rem}
+.result-dot{width:6px;height:6px;border-radius:50%;background:#1A1A1A;flex-shrink:0;margin-top:.5rem}
+.result-text{font-size:13px;color:#4A5568;line-height:1.6}
+.result-text strong{color:#1A1A1A;font-weight:500}
+.brandbook{display:flex;gap:1.25rem;align-items:center;background:#F8F8F6;border:1px solid #D1D5DB;border-radius:2px;padding:1.25rem 1.5rem;margin-top:1.5rem}
+.bb-icon{font-size:28px;flex-shrink:0}
+.bb-info{flex:1}
+.bb-name{font-size:14px;font-weight:500;color:#1A1A1A;margin-bottom:4px}
+.bb-desc{font-size:12px;color:#4A5568;line-height:1.6}
+.bb-link{font-size:11px;font-weight:600;padding:6px 14px;border-radius:2px;background:#1A1A1A;color:#fff;text-decoration:none;flex-shrink:0;align-self:center;transition:background .15s}
+.bb-link:hover{background:#333}
+.chapter-box{border:1px solid #D1D5DB;border-radius:2px;overflow:hidden;margin-top:2rem}
+.chapter-hd{background:#1A1A1A;padding:1rem 1.5rem;display:flex;justify-content:space-between;align-items:center}
+.chapter-hd-title{font-family:Georgia,serif;font-size:18px;color:#fff;font-weight:400}
+.chapter-hd-sub{font-size:11px;color:rgba(255,255,255,.5)}
+.chapter-body{padding:1.5rem}
+.chapter-text{font-size:13px;color:#4A5568;line-height:1.8;margin-bottom:1.25rem}
+.chapter-text strong{color:#1A1A1A;font-weight:500}
+.chapter-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:.75rem}
+.ckpi{text-align:center;padding:.75rem;background:#F8F8F6;border-radius:2px;border:1px solid #D1D5DB}
+.ckpi-val{font-family:Georgia,serif;font-size:20px;color:#1A1A1A;margin-bottom:3px}
+.ckpi-lbl{font-size:10px;color:#888;line-height:1.4}
+.ft{border-top:1px solid #D1D5DB;padding:1rem 3rem;display:flex;justify-content:space-between;font-size:11px;color:#888;max-width:860px;margin:0 auto}
+@media(max-width:680px){
+  .hd-inner{flex-direction:column;gap:1rem}
+  .hd-meta{text-align:left}
+  .body,.hd{padding-left:1.5rem;padding-right:1.5rem}
+  .int-item{grid-template-columns:1fr}
+  .results-grid{grid-template-columns:1fr}
+  .chapter-kpis{grid-template-columns:repeat(2,1fr)}
+  .context-box{grid-template-columns:1fr}
+  .ft{padding:1rem 1.5rem;flex-direction:column;gap:.5rem}
+}
+</style>
+</head>
+<body>
+
+<div class="hd">
+  <div class="hd-inner">
+    <div>
+      <div class="hd-eye">Case Study · Revenue Architecture</div>
+      <div class="hd-title">Movildata Internacional<br><em>2016–2019</em></div>
+      <div class="hd-sub">Construí la infraestructura de revenue que transformó una PME de telemática en un activo adquirible por una multinacional global.</div>
+    </div>
+    <div class="hd-meta">
+      <strong>Alberto Vera</strong>
+      CMO / Head of Strategy<br>
+      B2B SaaS · Fleet Management<br>
+      España
+    </div>
+  </div>
+</div>
+
+<div class="body">
+
+  <div class="tags">
+    <span class="tag tag-dark">B2B SaaS</span>
+    <span class="tag tag-dark">Telemática · Fleet Management</span>
+    <span class="tag tag-dark">España</span>
+    <span class="tag tag-mid">Adquisición por Verizon</span>
+    <span class="tag tag-mid">M&A Due Diligence</span>
+    <span class="tag tag-mid">Revenue Architecture</span>
+  </div>
+
+  <div class="context-box">
+    <div>
+      <div class="ctx-label">Empresa</div>
+      <div class="ctx-value">Movildata Internacional S.L.<br>PME · fundada 2001</div>
+    </div>
+    <div>
+      <div class="ctx-label">Mi Rol</div>
+      <div class="ctx-value">CMO / Head of Strategy<br>Co-arquitecto junto al CEO</div>
+    </div>
+    <div>
+      <div class="ctx-label">Resultado</div>
+      <div class="ctx-value">Adquisición por Verizon<br>ARR base: 3,1M€ · 20K vehículos</div>
+    </div>
+  </div>
+
+  <div class="sec-lbl">El Punto de Partida</div>
+  <p class="body-text">
+    Cuando me incorporé, Movildata tenía un producto probado y una base de clientes establecida —
+    pero <strong>carecía completamente de infraestructura de revenue para escalar.</strong>
+    La operación comercial funcionaba por relaciones personales e iniciativa individual:
+    sin funnel definido, sin equipo de inside sales estructurado, captación digital mínima
+    y sin unit economics documentados.
+  </p>
+  <p class="body-text">
+    Una primera aproximación de adquisición por parte de Verizon había sido
+    <strong>pospuesta por falta de alineación estratégica y comercial.</strong>
+  </p>
+  <p class="body-text">
+    El mandato era implícito pero claro: construir la máquina de revenue que hiciera el negocio
+    escalable, defendible y adquirible.
+  </p>
+
+  <hr class="divider">
+
+  <div class="sec-lbl">Lo que hice</div>
+  <p class="body-text" style="margin-bottom:1.5rem">
+    Diseñé e implementé la arquitectura de revenue completa desde cero en dos años,
+    actuando como co-arquitecto único de la estrategia junto al CEO:
+  </p>
+
+  <div class="intervention-list">
+    <div class="int-item">
+      <div class="int-label">Construcción del equipo</div>
+      <div class="int-desc">Reclté y estructuré una organización comercial de <strong>18 personas</strong> — 4 en marketing, 7 en inside sales, 7 en ventas de campo — estableciendo por primera vez una separación clara entre generación de demanda y ejecución comercial.</div>
+    </div>
+    <div class="int-item">
+      <div class="int-label">Rediseño de pricing</div>
+      <div class="int-desc">Diseñé y validé un modelo de pricing por niveles <strong>(Basic / Pro / Enterprise)</strong> alineado al valor por segmento y tamaño de flota, sustituyendo un enfoque informal que dejaba margen sin capturar.</div>
+    </div>
+    <div class="int-item">
+      <div class="int-label">Reposicionamiento de marca</div>
+      <div class="int-desc">Lideré el reposicionamiento estratégico completo bajo el claim <strong>Simply Smart</strong> — incluyendo la construcción del Brandbook corporativo: insight de cliente, posicionamiento competitivo, arquitectura de valores e identidad verbal y visual.</div>
+    </div>
+    <div class="int-item">
+      <div class="int-label">Motion de revenue dual</div>
+      <div class="int-desc">Construí simultáneamente el motor de captación digital <strong>inbound</strong> y el motion de inside sales <strong>outbound</strong> — generando pipeline predecible y medible por primera vez en la historia de la empresa.</div>
+    </div>
+    <div class="int-item">
+      <div class="int-label">Unit economics & due diligence</div>
+      <div class="int-desc">Construí el modelo completo de unit economics desde cero — <strong>CAC, LTV, churn y payback period por segmento.</strong> El revenue forecast que presenté a Verizon se alineó estrechamente con sus proyecciones internas. Mi análisis competitivo fue <strong>formalmente reconocido</strong> por el equipo adquirente.</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="sec-lbl">Los Resultados</div>
+  <div class="results-grid">
+    <div class="result-item">
+      <div class="result-dot"></div>
+      <div class="result-text"><strong>25% YOY de crecimiento en revenue</strong> sostenido durante el período pre-adquisición</div>
+    </div>
+    <div class="result-item">
+      <div class="result-dot"></div>
+      <div class="result-text"><strong>ARR hasta 3,1M€</strong> — base que crecería hasta 17,3M€ en los 7 años siguientes</div>
+    </div>
+    <div class="result-item">
+      <div class="result-dot"></div>
+      <div class="result-text"><strong>Adquisición por Verizon ejecutada</strong> — el mismo comprador que había pospuesto la operación dos años antes</div>
+    </div>
+    <div class="result-item">
+      <div class="result-dot"></div>
+      <div class="result-text"><strong>Due diligence con reconocimiento explícito</strong> del análisis competitivo y la precisión del revenue forecast</div>
+    </div>
+  </div>
+
+  <div class="brandbook">
+    <div class="bb-icon">📘</div>
+    <div class="bb-info">
+      <div class="bb-name">Brandbook Movildata — Simply Smart (2018)</div>
+      <div class="bb-desc">Documento corporativo de 140 páginas que recoge el trabajo completo de reposicionamiento estratégico: insight de cliente, posicionamiento competitivo, arquitectura de valores, identidad verbal y visual, y guías de comunicación interna y externa.</div>
+    </div>
+    <a class="bb-link" href="brandbook_movildata_simply_smart_2018.pdf" target="_blank">Ver documento →</a>
+  </div>
+
+  <hr class="divider">
+
+  <div class="chapter-box">
+    <div class="chapter-hd">
+      <div class="chapter-hd-title">El Segundo Capítulo — Verizon Connect Iberia</div>
+      <div class="chapter-hd-sub">2019–2025</div>
+    </div>
+    <div class="chapter-body">
+      <p class="chapter-text">
+        Tras la adquisición, el reto cambió: escalar dentro de una estructura corporativa global
+        manteniendo la velocidad y el criterio de un operador. Introduje
+        <strong>ABM en la organización europea</strong> — primer mercado europeo de Verizon en
+        implementarlo — construí el <strong>motion outbound desde cero</strong>, implementé
+        segmentación por unit economics para optimizar CAC/LTV por segmento, escalé el
+        <strong>modelo Micro desde España a todos los mercados europeos</strong> y apliqué
+        <strong>Marketing Mix Modeling</strong> para optimizar la allocation de presupuesto entre canales.
+      </p>
+      <p class="chapter-text">
+        Lideré la expansión a Portugal con <strong>10% MRR MOM</strong> y
+        <strong>68% de revenue por canales propios.</strong>
+        España se convirtió en el mercado más rentable de la región europea de Verizon.
+      </p>
+      <div class="chapter-kpis">
+        <div class="ckpi">
+          <div class="ckpi-val">17,3M€</div>
+          <div class="ckpi-lbl">ARR final 2025</div>
+        </div>
+        <div class="ckpi">
+          <div class="ckpi-val">5,6x</div>
+          <div class="ckpi-lbl">Crecimiento ARR<br>en 7 años</div>
+        </div>
+        <div class="ckpi">
+          <div class="ckpi-val">69,5M€</div>
+          <div class="ckpi-lbl">LTV total<br>generado</div>
+        </div>
+        <div class="ckpi">
+          <div class="ckpi-val">219%</div>
+          <div class="ckpi-lbl">ROI sobre<br>inversión total</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="ft">
+  <span>Alberto Vera · CMO / Head of Strategy · Movildata Internacional 2016–2019</span>
+  <span>Case Study · Revenue Architecture</span>
+</div>
+
+</body>
+</html>
